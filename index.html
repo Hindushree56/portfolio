@@ -8,8 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Load Lucide Icons for aesthetic vectors -->
     <script type="module">
-        import { createIcons, AtSign, Briefcase, Code, BookOpen, Send, Github, Linkedin, Mail } from 'https://cdn.jsdelivr.net/npm/lucide-esm@latest';
-        createIcons({ icons: { AtSign, Briefcase, Code, BookOpen, Send, Github, Linkedin, Mail } });
+        import { createIcons, AtSign, Briefcase, Code, BookOpen, Send, Github, Linkedin, Mail, Brain, X } from 'https://cdn.jsdelivr.net/npm/lucide-esm@latest';
+        createIcons({ icons: { AtSign, Briefcase, Code, BookOpen, Send, Github, Linkedin, Mail, Brain, X } });
     </script>
     <style>
         /* Custom gradient for the header and footer, matching the example's aesthetic */
@@ -34,8 +34,7 @@
             width: 50px;
             height: 3px;
             background-color: #ff7e5f;
-            margin: 0.5rem auto 2rem auto;
-            border-radius: 9999px;
+            margin: 0.5rem 0 2rem 0; /* Left alignment */
         }
         /* Style for project and certificate cards */
         .card {
@@ -61,6 +60,24 @@
         .animate-float {
             animation: floating 3s ease-in-out infinite;
         }
+        /* Styling for the hidden modal backdrop */
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.7);
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+        .modal-content {
+            transform: translateY(-50px);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .modal-active .modal-content {
+            transform: translateY(0);
+        }
+        /* Section title alignment for consistency */
+        .section-title-wrapper {
+            text-align: left; /* Ensure the wrapper aligns children to the left */
+        }
+
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -97,28 +114,30 @@
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-        <!-- 2. HOME SCREEN / ABOUT ME SECTION (Updated Layout and Animation) -->
-        <section id="about" class="text-center py-16">
-            <h2 class="text-4xl font-extrabold mb-2 text-gray-900">ABOUT ME</h2>
-            <div class="section-underline"></div>
+        <!-- 2. HOME SCREEN / ABOUT ME SECTION (LEFT ALIGNED) -->
+        <section id="about" class="py-16">
+            <!-- Title Wrapper to enforce left alignment -->
+            <div class="section-title-wrapper">
+                <h2 class="text-4xl font-extrabold mb-2 text-gray-900">ABOUT ME</h2>
+                <div class="section-underline"></div>
+            </div>
             
+            <!-- FLEX CONTAINER: Image on Left (1/3), Text on Right (2/3) -->
             <div class="flex flex-col lg:flex-row items-center lg:space-x-12">
                 
-                <!-- Profile Image (Moved to the left and added floating animation) -->
-                <div class="lg:w-1/3 mt-8 lg:mt-0 flex justify-center order-1 lg:order-1">
+                <!-- Profile Image (LEFT SIDE) -->
+                <div class="lg:w-1/3 mt-8 lg:mt-0 flex justify-center lg:justify-start order-1 lg:order-1">
                     <div class="w-64 h-64 bg-gray-300 rounded-full overflow-hidden shadow-xl border-4 border-pink-400 p-1 animate-float">
-                        <!-- Profile Image Source Updated -->
-                        <!-- OLD: <img src="https://placehold.co/250x250/FCAE9D/FFFFFF?text=HINDUSHREE+H+V" alt="Hindushree H V Profile Picture Placeholder" class="w-full h-full object-cover rounded-full"> -->
                         <img 
-                            src="Picture.jpg" 
-                            alt="Hindushree H V Profile Picture" 
+                            src="https://raw.githubusercontent.com/Hindushree56/portfolio/main/Picture.jpg" 
+                            alt="Professional Profile Picture of Hindushree H V" 
                             class="w-full h-full object-cover rounded-full"
-                            onerror="this.onerror=null; this.src='https://placehold.co/250x250/FCAE9D/FFFFFF?text=HINDUSHREE+H+V';"
+                            onerror="console.error('Profile image failed to load from GitHub. Falling back to placeholder.'); this.onerror=null; this.src='https://placehold.co/250x250/FCAE9D/FFFFFF?text=HINDUSHREE+H+V';"
                         >
                     </div>
                 </div>
 
-                <!-- About Text (Moved to the right) -->
+                <!-- About Text (RIGHT SIDE) -->
                 <div class="lg:w-2/3 text-lg space-y-4 text-left order-2 lg:order-2 mt-8 lg:mt-0">
                     <p>
                         Hello, I'm **Hindushree H V**, a passionate Computer Science student from Bengaluru. I possess a **strong technical foundation** and hands-on experience in both **Full Stack Development and Machine Learning**. I have a keen eye for detail and a drive for creating secure, scalable, and highly interactive applications.
@@ -130,13 +149,14 @@
                         I am proficient in core technologies like **Python, React.js, Node.js, and Flask**, and I actively focus on bridging the gap between robust backend systems and intuitive user interfaces. I am actively seeking challenging roles in **Software Development or AI/ML-driven systems** where I can apply my diverse skillset.
                     </p>
                 </div>
+
             </div>
         </section>
 
         <!-- 3. TECHNOLOGIES & TOOLS SECTION -->
         <section id="technologies" class="text-center py-16 bg-white rounded-xl">
             <h2 class="text-4xl font-extrabold mb-2 text-gray-900">TECHNOLOGIES & TOOLS I WORK WITH</h2>
-            <div class="section-underline"></div>
+            <div class="section-underline mx-auto"></div>
             
             <div class="flex flex-wrap justify-center gap-3 sm:gap-4 p-4">
                 <!-- Programming -->
@@ -175,11 +195,11 @@
         <!-- 4. PROJECTS SECTION -->
         <section id="projects" class="py-16">
             <h2 class="text-4xl font-extrabold text-center mb-2 text-gray-900">PROJECTS</h2>
-            <div class="section-underline"></div>
+            <div class="section-underline mx-auto"></div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                <!-- Project 1: Diabetes Prediction / AI-based Stress Detection -->
+                <!-- Project 1: AI-based Stress Detection -->
                 <div class="card bg-white p-6 rounded-lg flex flex-col justify-between">
                     <div>
                         <!-- Placeholder Image/Icon (matching the example style) -->
@@ -188,15 +208,21 @@
                         </div>
                         <h3 class="text-xl font-bold text-gray-900 mb-1">AI-Based Stress Detection & Prediction</h3>
                         <p class="text-sm font-semibold text-pink-600 mb-3">Full Stack + AIML - May 2024 - June 2024</p>
-                        <p class="text-gray-600 text-sm">
+                        <p class="text-gray-600 text-sm project-desc">
                             Developed an AI-based stress detection model using physiological signals (EDA, HR), employing advanced data preprocessing and training **ML algorithms (SVM, Random Forest, CNN)**.
                         </p>
-                        <p class="text-gray-600 text-sm mt-2">
+                        <p class="text-gray-600 text-sm mt-2 project-desc">
                             Built a **Flask-based web application** providing real-time stress predictions, live-updating graphs, and automatic user input logging for interactive monitoring.
                         </p>
                     </div>
                     <p class="mt-4 text-xs font-medium text-gray-500">Tech Stack: Python, Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn, Flask</p>
-                    <a href="https://github.com/Hindukh" target="_blank" class="mt-4 inline-block text-center view-code-btn border border-gray-300 rounded-lg py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition">View Code</a>
+                    <!-- LLM Feature 1 Button -->
+                    <div class="flex space-x-2 mt-4">
+                        <a href="https://github.com/Hindukh" target="_blank" class="w-1/2 inline-block text-center view-code-btn border border-gray-300 rounded-lg py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition">View Code</a>
+                        <button onclick="summarizeProject(this)" class="w-1/2 flex items-center justify-center px-3 py-2 text-sm font-medium rounded-lg text-white gradient-bg hover:shadow-md transition duration-200">
+                            ✨ Explain Simply
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Project 2: Sign Language Translator -->
@@ -208,15 +234,21 @@
                         </div>
                         <h3 class="text-xl font-bold text-gray-900 mb-1">Sign Language Translator (A-Z)</h3>
                         <p class="text-sm font-semibold text-purple-600 mb-3">Machine Learning + Computer Vision</p>
-                        <p class="text-gray-600 text-sm">
+                        <p class="text-gray-600 text-sm project-desc">
                             Developed a **real-time Sign Language Translator** using **CNN, MediaPipe, and OpenCV** to recognize ASL hand gestures (A-Z) and convert them into text and speech.
                         </p>
-                        <p class="text-gray-600 text-sm mt-2">
+                        <p class="text-gray-600 text-sm mt-2 project-desc">
                             Built a complete ML pipeline including dataset preparation, model training, evaluation, and real-time deployment with high prediction accuracy.
                         </p>
                     </div>
                     <p class="mt-4 text-xs font-medium text-gray-500">Tech Stack: Python, TensorFlow, Keras, MediaPipe, OpenCV, NumPy, Streamlit</p>
-                    <a href="https://github.com/Hindukh" target="_blank" class="mt-4 inline-block text-center view-code-btn border border-gray-300 rounded-lg py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition">View Code</a>
+                    <!-- LLM Feature 1 Button -->
+                    <div class="flex space-x-2 mt-4">
+                        <a href="https://github.com/Hindukh" target="_blank" class="w-1/2 inline-block text-center view-code-btn border border-gray-300 rounded-lg py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition">View Code</a>
+                        <button onclick="summarizeProject(this)" class="w-1/2 flex items-center justify-center px-3 py-2 text-sm font-medium rounded-lg text-white gradient-bg hover:shadow-md transition duration-200">
+                            ✨ Explain Simply
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Project 3: Attendance System -->
@@ -228,15 +260,21 @@
                         </div>
                         <h3 class="text-xl font-bold text-gray-900 mb-1">Student Attendance Management System</h3>
                         <p class="text-sm font-semibold text-green-600 mb-3">Full Stack / Web Development - Mar 2025 - Apr 2025</p>
-                        <p class="text-gray-600 text-sm">
+                        <p class="text-gray-600 text-sm project-desc">
                             Developed a secure, web-based system using **PHP and MySQL** to efficiently manage student data, mark attendance, and generate automated reports for educational institutions.
                         </p>
-                        <p class="text-gray-600 text-sm mt-2">
+                        <p class="text-gray-600 text-sm mt-2 project-desc">
                             The system ensures high data accuracy, features a user-friendly interface, and is easily deployed using XAMPP.
                         </p>
                     </div>
                     <p class="mt-4 text-xs font-medium text-gray-500">Tech Stack: PHP, MySQL, HTML, CSS, JavaScript, XAMPP</p>
-                    <a href="https://github.com/Hindukh" target="_blank" class="mt-4 inline-block text-center view-code-btn border border-gray-300 rounded-lg py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition">View Code</a>
+                    <!-- LLM Feature 1 Button -->
+                    <div class="flex space-x-2 mt-4">
+                        <a href="https://github.com/Hindukh" target="_blank" class="w-1/2 inline-block text-center view-code-btn border border-gray-300 rounded-lg py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition">View Code</a>
+                        <button onclick="summarizeProject(this)" class="w-1/2 flex items-center justify-center px-3 py-2 text-sm font-medium rounded-lg text-white gradient-bg hover:shadow-md transition duration-200">
+                            ✨ Explain Simply
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Project 4: Event Management -->
@@ -248,15 +286,21 @@
                         </div>
                         <h3 class="text-xl font-bold text-gray-900 mb-1">Responsive Event Management Web App</h3>
                         <p class="text-sm font-semibold text-yellow-600 mb-3">Full Stack Web Development - Jul 2025 - Aug 2025</p>
-                        <p class="text-gray-600 text-sm">
+                        <p class="text-gray-600 text-sm project-desc">
                             Developed a comprehensive, responsive event management application featuring user login, event creation/editing, search functionality, image uploads, and CSV data export.
                         </p>
-                        <p class="text-gray-600 text-sm mt-2">
+                        <p class="text-gray-600 text-sm mt-2 project-desc">
                             Implemented dynamic features like light/dark mode UI using **Bootstrap** and leveraged **AngularJS and jQuery** for a clean, professional design and dynamic interaction.
                         </p>
                     </div>
                     <p class="mt-4 text-xs font-medium text-gray-500">Tech Stack: HTML5, CSS3, Bootstrap 5, AngularJS, jQuery, JavaScript</p>
-                    <a href="https://github.com/Hindukh" target="_blank" class="mt-4 inline-block text-center view-code-btn border border-gray-300 rounded-lg py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition">View Code</a>
+                    <!-- LLM Feature 1 Button -->
+                    <div class="flex space-x-2 mt-4">
+                        <a href="https://github.com/Hindukh" target="_blank" class="w-1/2 inline-block text-center view-code-btn border border-gray-300 rounded-lg py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition">View Code</a>
+                        <button onclick="summarizeProject(this)" class="w-1/2 flex items-center justify-center px-3 py-2 text-sm font-medium rounded-lg text-white gradient-bg hover:shadow-md transition duration-200">
+                            ✨ Explain Simply
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -264,7 +308,7 @@
         <!-- 5. CERTIFICATES SECTION -->
         <section id="certificates" class="py-16 bg-white rounded-xl">
             <h2 class="text-4xl font-extrabold text-center mb-2 text-gray-900">COURSES & CERTIFICATIONS</h2>
-            <div class="section-underline"></div>
+            <div class="section-underline mx-auto"></div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
@@ -325,11 +369,11 @@
         <!-- 6. CONTACT ME SECTION -->
         <section id="contact" class="py-16">
             <h2 class="text-4xl font-extrabold text-center mb-2 text-gray-900">CONTACT ME</h2>
-            <div class="section-underline"></div>
+            <div class="section-underline mx-auto"></div>
             
             <div class="flex flex-col lg:flex-row bg-white p-8 rounded-xl shadow-lg">
                 
-                <!-- Image Area (Matching the example) -->
+                <!-- Image Area -->
                 <div class="lg:w-1/2 flex items-center justify-center p-4 hidden md:flex">
                     <!-- Placeholder Image (Replace with a custom SVG or illustration if desired) -->
                     <img 
@@ -339,8 +383,29 @@
                     >
                 </div>
 
-                <!-- Contact Form -->
+                <!-- Contact Form and AI Prep Tool -->
                 <div class="lg:w-1/2 p-4">
+
+                    <!-- LLM Feature 2: AI Career Prep Tool -->
+                    <div id="ai-prep-tool" class="bg-pink-50 p-6 rounded-lg mb-8 border border-pink-200">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                            <i data-lucide="brain" class="w-6 h-6 mr-2 text-pink-600"></i> AI Career Prep ✨
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Enter a specific job role (e.g., 'Junior MLOps Engineer') to get the **must-have skills and keywords** to include in your resume for that role. Powered by Google Search grounding.
+                        </p>
+                        <input type="text" id="job-role-input" placeholder="e.g., Junior MLOps Engineer" class="mb-3 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 transition">
+                        <button type="button" onclick="generateKeywords()" id="keyword-button" class="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-pink-600 hover:bg-pink-700 transition duration-200">
+                            Generate Keywords & Skills
+                        </button>
+                        <div id="keyword-results" class="mt-4 p-4 bg-white rounded-lg border border-pink-100 hidden">
+                            <p class="font-semibold text-gray-800 mb-2">Relevant Keywords:</p>
+                            <div id="keyword-content" class="text-sm text-gray-700"></div>
+                        </div>
+                    </div>
+
+                    <!-- Traditional Contact Form -->
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 text-center lg:text-left">Send Me a Message</h3>
                     <form class="space-y-6">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name:</label>
@@ -352,7 +417,7 @@
                         </div>
                         <div>
                             <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message:</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Your message" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 transition"></textarea>
+                            <textarea id="message-text" name="message" rows="5" placeholder="Your message" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 transition"></textarea>
                         </div>
                         <button type="submit" class="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white gradient-bg hover:shadow-lg transition duration-200">
                             Send <i data-lucide="send" class="w-4 h-4 ml-2"></i>
@@ -363,6 +428,21 @@
         </section>
         
     </main>
+
+    <!-- Modal for LLM Results -->
+    <div id="llm-modal" class="modal-backdrop fixed inset-0 flex items-center justify-center opacity-0 pointer-events-none" onclick="closeModal()">
+        <div class="modal-content bg-white p-6 rounded-xl shadow-2xl w-full max-w-lg mx-4" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modal-title" class="text-xl font-bold text-gray-900">Result</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div id="modal-body" class="prose max-w-none text-gray-700">
+                <!-- Content will be injected here -->
+            </div>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer class="gradient-bg text-white py-12">
@@ -423,6 +503,161 @@
             </div>
         </div>
     </footer>
+    
+    <!-- Gemini API Script -->
+    <script>
+        const API_KEY = ""; // Placeholder for Canvas environment
+        const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent";
 
+        // --- Modal Control Functions ---
+        function showModal(title, content) {
+            const modal = document.getElementById('llm-modal');
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-body').innerHTML = content;
+            modal.classList.add('modal-active', 'opacity-100', 'pointer-events-auto');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('llm-modal');
+            modal.classList.remove('modal-active', 'opacity-100', 'pointer-events-auto');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        // --- API Helper Function with Exponential Backoff ---
+        async function fetchWithRetry(userQuery, systemPrompt, useSearchGrounding, retries = 3) {
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const payload = {
+                        contents: [{ parts: [{ text: userQuery }] }],
+                        systemInstruction: { parts: [{ text: systemPrompt }] },
+                    };
+
+                    if (useSearchGrounding) {
+                        payload.tools = [{ "google_search": {} }];
+                    }
+
+                    const response = await fetch(`${API_URL}?key=${API_KEY}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.status === 429 && i < retries - 1) {
+                        // Rate limit exceeded, wait and retry
+                        const delay = Math.pow(2, i) * 1000;
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        continue;
+                    }
+
+                    if (!response.ok) {
+                        throw new Error(`API call failed with status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const candidate = result.candidates?.[0];
+
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        const text = candidate.content.parts[0].text;
+                        let sources = [];
+                        const groundingMetadata = candidate.groundingMetadata;
+
+                        if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                            sources = groundingMetadata.groundingAttributions
+                                .map(attribution => ({
+                                    uri: attribution.web?.uri,
+                                    title: attribution.web?.title,
+                                }))
+                                .filter(source => source.uri && source.title);
+                        }
+                        return { text, sources };
+                    } else {
+                        throw new Error("Received empty or malformed response from Gemini API.");
+                    }
+                } catch (error) {
+                    if (i === retries - 1) throw error;
+                    // Otherwise, the loop will continue to retry
+                }
+            }
+        }
+
+        // --- Feature 1: Project Summarizer ---
+        async function summarizeProject(button) {
+            const card = button.closest('.card');
+            const title = card.querySelector('h3').textContent;
+            const descriptionElements = card.querySelectorAll('.project-desc');
+            let description = title + ". ";
+            descriptionElements.forEach(p => { description += p.textContent.trim() + " "; });
+
+            const userQuery = `Simplify and explain the following project description for a non-technical manager in 4-5 concise bullet points. The tone should be professional and highlight the business value and key technologies used: ${description}`;
+            
+            // Show loading state
+            showModal("Generating Explanation...", `<div class="flex justify-center items-center h-20"><svg class="animate-spin h-8 w-8 text-pink-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg><span class="ml-3 text-gray-600">AI is simplifying your project description...</span></div>`);
+
+            const systemPrompt = "You are a concise technical writer. Your goal is to take a complex project description and translate it into simple, high-impact bullet points for a business audience.";
+            
+            try {
+                const result = await fetchWithRetry(userQuery, systemPrompt, false);
+                // Convert Markdown to HTML for list rendering
+                const formattedText = result.text.replace(/\*/g, '').replace(/^- /gm, '<li>').replace(/^(.+)$/gm, '<ul>$1</ul>');
+                showModal(`Simplified Explanation for: ${title}`, `<ul class="list-disc list-inside space-y-2">${formattedText}</ul>`);
+            } catch (error) {
+                showModal("Error", `<p class="text-red-500">Failed to get explanation. The API call failed. Please check the console for details.</p>`);
+                console.error("API Error:", error);
+            }
+        }
+
+        // --- Feature 2: AI Career Prep (Keywords with Search Grounding) ---
+        async function generateKeywords() {
+            const roleInput = document.getElementById('job-role-input');
+            const role = roleInput.value.trim();
+            const resultDiv = document.getElementById('keyword-content');
+            const resultsContainer = document.getElementById('keyword-results');
+            const button = document.getElementById('keyword-button');
+
+            if (!role) {
+                roleInput.placeholder = "Please enter a job role!";
+                return;
+            }
+
+            button.disabled = true;
+            button.textContent = "Searching for Keywords...";
+            resultsContainer.classList.remove('hidden');
+            
+            // Loading indicator
+            resultDiv.innerHTML = `<div class="flex justify-center items-center h-10"><svg class="animate-spin h-5 w-5 text-pink-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg><span class="ml-2 text-sm text-gray-600">Gathering current market data...</span></div>`;
+
+            const userQuery = `Based on current industry standards and job listings, what are the top 5 essential hard skills and 3 critical soft skills for a '${role}'? Format the response as a single, numbered or bulleted list.`;
+            const systemPrompt = "You are a career counselor and job market expert. Use Google Search to find up-to-date information on the most requested skills for the specified job role.";
+
+            try {
+                const result = await fetchWithRetry(userQuery, systemPrompt, true);
+                
+                let htmlContent = result.text.replace(/\*/g, ''); // Basic markdown to prevent issues
+                
+                // Append citations
+                if (result.sources && result.sources.length > 0) {
+                    htmlContent += '<p class="mt-4 text-xs font-medium text-gray-500 border-t pt-2">Sources Grounding:</p><ul class="list-disc list-inside text-xs text-gray-500 space-y-1">';
+                    result.sources.forEach((source) => {
+                        // Ensure we don't display 'undefined' titles
+                        if (source.title && source.uri) {
+                            htmlContent += `<li><a href="${source.uri}" target="_blank" class="hover:underline">${source.title}</a></li>`;
+                        }
+                    });
+                    htmlContent += '</ul>';
+                }
+
+                resultDiv.innerHTML = htmlContent;
+
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="text-red-500">Failed to fetch current keywords. API Error: ${error.message}</p>`;
+                console.error("API Error:", error);
+            } finally {
+                button.disabled = false;
+                button.textContent = "Generate Keywords & Skills";
+            }
+        }
+
+    </script>
 </body>
 </html>
