@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hindushree H V - Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons for vector icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Use Inter font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7; /* Light off-white background */
+        }
+        
+        /* NEW COLOR PALETTE based on the images */
+        /* MAIN ACCENT COLOR (Orange/Coral) */
+        .accent-orange {
+            background-color: #ff9933; 
+        }
+        .text-accent-orange {
+            color: #ff9933;
+        }
+        .border-accent-orange {
+            border-color: #ff9933;
+        }
+        .hover-accent-orange:hover {
+            background-color: #e68a2e; /* Slightly darker hover */
+        }
+        
+        /* SECONDARY ACCENT (Used for dark text/details) */
+        .tech-tag {
+            background-color: #4b5563; /* Darker grey for readability */
+        }
+
+        /* Section Title Styling */
+        .section-title {
+            color: #ff9933; /* Accent Orange */
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #ff9933; /* Accent Orange underline */
+            margin: 10px auto 0;
+            border-radius: 9999px;
+        }
+        
+        /* Project card styling (Maintaining the structure from last update) */
+        .project-card {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .certificate-card {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Custom Styles for Horizontal Scrolling Certifications */
+        #certs-container::-webkit-scrollbar {
+            height: 0;
+        }
+        #certs-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            cursor: grab;
+        }
+        .certificate-card-wrapper {
+            flex: 0 0 auto;
+            width: 300px;
+            margin-right: 1.5rem;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header & Navigation Bar (Accent Orange Background) -->
+    <header id="home" class="sticky top-0 z-50 accent-orange shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+            <!-- Logo/Name -->
+            <div class="text-white text-2xl font-bold">
+                Hindushree H V
+                <span class="block text-sm font-light -mt-1">Full Stack Developer | AI/ML Enthusiast</span>
+            </div>
+
+            <!-- Navigation Links (Desktop) -->
+            <nav class="hidden md:flex space-x-6 text-white font-medium">
+                <a href="#about" class="hover:text-gray-200 transition duration-150 flex items-center">
+                    <i data-lucide="user" class="w-4 h-4 mr-1"></i>About
+                </a>
+                <a href="#skills" class="hover:text-gray-200 transition duration-150 flex items-center">
+                    <i data-lucide="wrench" class="w-4 h-4 mr-1"></i>Skills
+                </a>
+                <a href="#projects" class="hover:text-gray-200 transition duration-150 flex items-center">
+                    <i data-lucide="folder-open" class="w-4 h-4 mr-1"></i>Projects
+                </a>
+                <a href="#certs" class="hover:text-gray-200 transition duration-150 flex items-center">
+                    <i data-lucide="award" class="w-4 h-4 mr-1"></i>Certs
+                </a>
+                <a href="#contact" class="hover:text-gray-200 transition duration-150 flex items-center">
+                    <i data-lucide="mail" class="w-4 h-4 mr-1"></i>Contact
+                </a>
+                <!-- Resume Link Button (White Background, Accent Orange Text) -->
+                <a href="Hindushree_Resume.pdf.pdf" target="_blank" class="bg-white text-accent-orange px-4 py-2 rounded-lg hover:bg-gray-100 transition duration-150 shadow-md flex items-center">
+                    <i data-lucide="file-text" class="w-4 h-4 mr-1"></i>Resume
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu (Hidden by Default) -->
+        <nav id="mobile-menu" class="hidden md:hidden bg-orange-500 px-4 pb-4 space-y-2 text-white font-medium">
+            <a href="#about" class="block py-2 hover:bg-orange-600 rounded-lg transition duration-150 flex items-center"><i data-lucide="user" class="w-4 h-4 mr-2"></i>About</a>
+            <a href="#skills" class="block py-2 hover:bg-orange-600 rounded-lg transition duration-150 flex items-center"><i data-lucide="wrench" class="w-4 h-4 mr-2"></i>Skills</a>
+            <a href="#projects" class="block py-2 hover:bg-orange-600 rounded-lg transition duration-150 flex items-center"><i data-lucide="folder-open" class="w-4 h-4 mr-2"></i>Projects</a>
+            <a href="#certs" class="block py-2 hover:bg-orange-600 rounded-lg transition duration-150 flex items-center"><i data-lucide="award" class="w-4 h-4 mr-2"></i>Certs</a>
+            <a href="#contact" class="block py-2 hover:bg-orange-600 rounded-lg transition duration-150 flex items-center"><i data-lucide="mail" class="w-4 h-4 mr-2"></i>Contact</a>
+            <a href="Hindushree_Resume.pdf.pdf" target="_blank" class="block py-2 bg-white text-accent-orange rounded-lg text-center hover:bg-gray-100 transition duration-150 flex items-center justify-center"><i data-lucide="file-text" class="w-4 h-4 mr-2"></i>View Resume</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- About Me Section -->
+        <section id="about" class="py-16 md:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-title">ABOUT ME</h2>
+                <div class="flex flex-col md:flex-row items-center gap-10">
+                    <!-- Profile Picture Placeholder -->
+                    <div class="md:w-1/3 flex justify-center">
+                        <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden bg-orange-100 p-2 border-4 border-accent-orange">
+                            <img src="https://placehold.co/800x800/ff9933/ffffff?text=Hindushree+Profile" alt="Profile Picture Placeholder" class="w-full h-full object-cover rounded-full">
+                            <!-- Subtle Orange Ring Effect -->
+                            <div class="absolute inset-0 rounded-full" style="background: radial-gradient(circle at 100% 100%, rgba(255,255,255,0.8) 0%, rgba(255,153,51,0.5) 70%);"></div>
+                        </div>
+                    </div>
+                    <!-- Professional Summary -->
+                    <div class="md:w-2/3 text-lg space-y-4 text-gray-700">
+                        <p>
+                            Hello, I'm <strong class="text-accent-orange">Hindushree H V</strong>, a Computer Science student with a strong technical foundation in **Full Stack Development** and **Machine Learning**. I am passionate about building secure, scalable, and intelligent applications that solve real-world problems.
+                        </p>
+                        <p>
+                            I specialize in integrating various technologies, ranging from **React.js, Node.js, and Flask** for web application development, to **Python, TensorFlow, and Scikit-learn** for AI/ML systems. My goal is to apply my knowledge to roles in Software Development or AI-driven systems.
+                        </p>
+                        <p>
+                            I am actively pursuing my **Master of Computer Application** at NMAM Institute of Technology, Nitte, which complements my foundation in my Bachelor of Computer Application. I am constantly expanding my knowledge through advanced courses and hands-on projects.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technologies & Tools Section (Skills) -->
+        <section id="skills" class="py-16 md:py-24 bg-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-title">TECHNOLOGIES & TOOLS I WORK WITH</h2>
+
+                <!-- Skills List -->
+                <div class="flex flex-wrap justify-center gap-4 mt-12">
+                    <!-- All tags use the same dark professional color (#4b5563) -->
+                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">Python</span>
+                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">C/C++</span>
+                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">React.js</span>
+                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">Node.js</span>
+                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">Flask</span>
+                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">HTML & CSS</span>
+                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">JavaScript</span>
+                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">Bootstrap 5</span>
+                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">AngularJS (Legacy)</span>
+                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">MongoDB</span>
+                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">MySQL & SQL</span>
+                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">GitHub & VS Code</span>
+                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">XAMPP</span>
+                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">TensorFlow & Keras</span>
+                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">Scikit-learn</span>
+                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">Pandas & NumPy</span>
+                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">Computer Vision (OpenCV, MediaPipe)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-16 md:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-title">PROJECTS</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+
+                    <!-- Project 1: Diabetes Prediction Using Machine Learning -->
+                    <div class="project-card bg-white">
+                        <!-- Project Visual Placeholder -->
+                        <div class="h-40 bg-orange-100 flex items-center justify-center overflow-hidden border-b-4 border-accent-orange">
+                            <!-- Placeholder image/visual that matches the image reference style -->
+                            <img src="https://placehold.co/600x400/ff9933/ffffff?text=AI+Prediction+App" 
+                                 alt="AI Prediction Project Screenshot" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        
+                        <div class="p-4 flex flex-col h-[calc(100%-10rem)]">
+                            <div class="flex-grow">
+                                <h3 class="text-xl font-bold text-gray-900 mb-1">Diabetes Prediction Using ML</h3>
+                                <p class="text-sm text-gray-500 mb-3">Full Stack + AIML | May 2024 - June 2024</p>
+                                <p class="text-gray-700 text-sm leading-relaxed mb-4">
+                                    Developed an AI-based stress detection model using physiological signals (EDA, HR), employing ML algorithms like SVM, Random Forest, and CNN.
+                                </p>
+                                <ul class="flex flex-wrap gap-2 mb-4">
+                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">Python</li>
+                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">Flask</li>
+                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">Scikit-learn</li>
+                                </ul>
+                            </div>
+                            <!-- Buttons -->
+                            <div class="flex justify-between space-x-2 mt-auto pt-2 border-t border-gray-100">
+                                <a href="#" class="w-full text-center text-sm font-semibold text-white accent-orange hover-accent-orange py-2 rounded-lg transition duration-150">View Demo (N/A)</a>
+                                <a href="https://github.com/Hindukh" target="_blank" class="w-full text-center text-sm font-semibold text-accent-orange border border-accent-orange hover:bg-orange-50 py-2 rounded-lg transition duration-150">View Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Sign Language Translator -->
+                    <div class="project-card bg-white">
+                        <!-- Project Visual Placeholder -->
+                        <div class="h-40 bg-orange-100 flex items-center justify-center overflow-hidden border-b-4 border-accent-orange">
+                             <img src="https://placehold.co/600x400/ff9933/ffffff?text=ASL+Translator" 
+                                 alt="Sign Language Translator Project Screenshot" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        
+                        <div class="p-4 flex flex-col h-[calc(100%-10rem)]">
+                            <div class="flex-grow">
+                                <h3 class="text-xl font-bold mt-2 text-gray-900 mb-1">Sign Language Translator</h3>
+                                <p class="text-sm text-gray-500 mb-3">ML + Computer Vision</p>
+                                <p class="text-gray-700 text-sm leading-relaxed mb-4">
+                                    Developed a real-time translator using CNN, MediaPipe, and OpenCV to recognize ASL hand gestures (A-Z) and convert them into text and speech.
+                                </p>
+                                <ul class="flex flex-wrap gap-2 mb-4">
+                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">Python</li>
+                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">TensorFlow</li>
+                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">OpenCV</li>
+                                </ul>
+                            </div>
+                            <!-- Buttons -->
+                            <div class="flex justify-between space-x-2 mt-auto pt-2 border-t border-gray-100">
+                                <a href="#" class="w-full text-center text-sm font-semibold text-white accent-orange hover-accent-orange py-2 rounded-lg transition duration-150">View Demo (N/A)</a>
+                                <a href="https://github.com/Hindukh" target="_blank" class="w-full text-center text-sm font-semibold text-accent-orange border border-accent-orange hover:bg-orange-50 py-2 rounded-lg transition duration-150">View Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Attendance System -->
+                    <div class="project-card bg-white">
+                        <!-- Project Visual Placeholder -->
+                        <div class="h-40 bg-orange-100 flex items-center justify-center overflow-hidden border-b-4 border-accent-orange">
+                             <img src="https://placehold.co/600x400/ff9933/ffffff?text=Attendance+System" 
+                                 alt="Attendance System Project Screenshot" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        
+                        <div class="p-4 flex flex-col h-[calc(100%-10rem)]">
+                            <div class="flex-grow">
+                                <h3 class="text-xl font-bold mt-2 text-gray-900 mb-1">Attendance System</h3>
+                                <p class="text-sm text-gray-500 mb-3">Full Stack | March 2025 - April 2025</p>
+                                <p class="text-gray-700 text-sm leading-relaxed mb-4">
+                                    Developed a web-based system using PHP and MySQL to manage student data, mark attendance, and generate automated reports using XAMPP.
+                                </p>
+                                <ul class="flex flex-wrap gap-2 mb-4">
+                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">PHP</li>
+                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">MySQL</li>
+                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">HTML/CSS/JS</li>
+                                </ul>
+                            </div>
+                            <!-- Buttons -->
+                            <div class="flex justify-between space-x-2 mt-auto pt-2 border-t border-gray-100">
+                                <a href="#" class="w-full text-center text-sm font-semibold text-white accent-orange hover-accent-orange py-2 rounded-lg transition duration-150">View Demo (N/A)</a>
+                                <a href="https://github.com/Hindukh" target="_blank" class="w-full text-center text-sm font-semibold text-accent-orange border border-accent-orange hover:bg-orange-50 py-2 rounded-lg transition duration-150">View Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: Event Management Web App -->
+                    <div class="project-card bg-white">
+                        <!-- Project Visual Placeholder -->
+                        <div class="h-40 bg-orange-100 flex items-center justify-center overflow-hidden border-b-4 border-accent-orange">
+                             <img src="https://placehold.co/600x400/ff9933/ffffff?text=Event+Management+App" 
+                                 alt="Event Management App Project Screenshot" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        
+                        <div class="p-4 flex flex-col h-[calc(100%-10rem)]">
+                            <div class="flex-grow">
+                                <h3 class="text-xl font-bold mt-2 text-gray-900 mb-1">Event Management App</h3>
+                                <p class="text-sm text-gray-500 mb-3">Full-Stack | July 2025 - Aug 2025</p>
+                                <p class="text-gray-700 text-sm leading-relaxed mb-4">
+                                    Developed a responsive web app with user login, event creation/editing, search, image upload, CSV export, and a light/dark mode UI using modern web frameworks.
+                                </p>
+                                <ul class="flex flex-wrap gap-2 mb-4">
+                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">HTML5/CSS3</li>
+                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">Bootstrap 5</li>
+                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">AngularJS</li>
+                                </ul>
+                            </div>
+                            <!-- Buttons -->
+                            <div class="flex justify-between space-x-2 mt-auto pt-2 border-t border-gray-100">
+                                <a href="#" class="w-full text-center text-sm font-semibold text-white accent-orange hover-accent-orange py-2 rounded-lg transition duration-150">View Demo (N/A)</a>
+                                <a href="https://github.com/Hindukh" target="_blank" class="w-full text-center text-sm font-semibold text-accent-orange border border-accent-orange hover:bg-orange-50 py-2 rounded-lg transition duration-150">View Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses & Certifications Section (Horizontal Scroll) -->
+        <section id="certs" class="py-16 md:py-24 bg-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-title">COURSES & CERTIFICATIONS</h2>
+
+                <!-- Horizontal Scroll Container -->
+                <div id="certs-container" class="flex overflow-x-auto whitespace-nowrap py-4 -mx-4 px-4 scroll-smooth">
+                    
+                    <!-- Certification Card 1 -->
+                    <div class="certificate-card-wrapper">
+                        <div class="certificate-card bg-white p-6 rounded-xl border-l-4 border-accent-orange h-full flex flex-col justify-start">
+                            <div class="flex items-start">
+                                <i data-lucide="certificate" class="w-6 h-6 mr-4 text-accent-orange flex-shrink-0"></i>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-900">Full Stack Development</h3>
+                                    <p class="text-base font-medium text-gray-600">Coursera (Meta)</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-4 leading-relaxed">Completed an extensive program covering the full web development lifecycle, focusing on modern front-end and back-end technologies.</p>
+                            <a href="#" class="mt-4 text-sm font-semibold text-accent-orange hover:underline inline-flex items-center">
+                                View Credential <i data-lucide="external-link" class="w-3 h-3 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Certification Card 2 -->
+                    <div class="certificate-card-wrapper">
+                        <div class="certificate-card bg-white p-6 rounded-xl border-l-4 border-accent-orange h-full flex flex-col justify-start">
+                            <div class="flex items-start">
+                                <i data-lucide="certificate" class="w-6 h-6 mr-4 text-accent-orange flex-shrink-0"></i>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-900">Introduction to MongoDB</h3>
+                                    <p class="text-base font-medium text-gray-600">Coursera</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-4 leading-relaxed">Deep dive into NoSQL database management, indexing, aggregation pipelines, and MongoDB architecture.</p>
+                            <a href="#" class="mt-4 text-sm font-semibold text-accent-orange hover:underline inline-flex items-center">
+                                View Credential <i data-lucide="external-link" class="w-3 h-3 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Certification Card 3 -->
+                    <div class="certificate-card-wrapper">
+                        <div class="certificate-card bg-white p-6 rounded-xl border-l-4 border-accent-orange h-full flex flex-col justify-start">
+                            <div class="flex items-start">
+                                <i data-lucide="certificate" class="w-6 h-6 mr-4 text-accent-orange flex-shrink-0"></i>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-900">Microsoft Azure, AI and Applied AI</h3>
+                                    <p class="text-base font-medium text-gray-600">Learning Challenges</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-4 leading-relaxed">Training on cloud computing principles, core AI concepts, and deploying applied AI solutions using Azure services.</p>
+                            <a href="#" class="mt-4 text-sm font-semibold text-accent-orange hover:underline inline-flex items-center">
+                                View Credential <i data-lucide="external-link" class="w-3 h-3 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Certification Card 4 -->
+                    <div class="certificate-card-wrapper">
+                        <div class="certificate-card bg-white p-6 rounded-xl border-l-4 border-accent-orange h-full flex flex-col justify-start">
+                            <div class="flex items-start">
+                                <i data-lucide="certificate" class="w-6 h-6 mr-4 text-accent-orange flex-shrink-0"></i>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-900">Cloud Computing SDP</h3>
+                                    <p class="text-base font-medium text-gray-600">Wipfli, Bengaluru</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-4 leading-relaxed">Specialized program on Software Development Practices, focused on efficient workflows within Cloud Environments.</p>
+                            <a href="#" class="mt-4 text-sm font-semibold text-accent-orange hover:underline inline-flex items-center">
+                                View Credential <i data-lucide="external-link" class="w-3 h-3 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Certification Card 5 (Example of another cert from resume) -->
+                    <div class="certificate-card-wrapper">
+                        <div class="certificate-card bg-white p-6 rounded-xl border-l-4 border-accent-orange h-full flex flex-col justify-start">
+                            <div class="flex items-start">
+                                <i data-lucide="certificate" class="w-6 h-6 mr-4 text-accent-orange flex-shrink-0"></i>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-900">Prompt Engineering for ChatGPT</h3>
+                                    <p class="text-base font-medium text-gray-600">GreatLearning</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-4 leading-relaxed">Learned advanced techniques for designing effective prompts for large language models to optimize outputs.</p>
+                            <a href="#" class="mt-4 text-sm font-semibold text-accent-orange hover:underline inline-flex items-center">
+                                View Credential <i data-lucide="external-link" class="w-3 h-3 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Horizontal Scroll Container -->
+            </div>
+        </section>
+
+
+        <!-- Contact Me Section -->
+        <section id="contact" class="py-16 md:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-title">CONTACT ME</h2>
+                
+                <!-- Two-Column Contact Layout -->
+                <div class="mt-12 flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
+                    
+                    <!-- Left Column: Illustration -->
+                    <div class="md:w-1/2 flex justify-center order-1 md:order-1">
+                        <!-- Using the image from the reference (or an appropriate placeholder) -->
+                        <img 
+                            src="https://raw.githubusercontent.com/Hindukh/Portfolio/main/contact_illustration.png" 
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x400/ff9933/ffffff?text=Contact+Illustration'"
+                            alt="Illustration of a person using a mobile phone surrounded by hearts" 
+                            class="max-w-xs md:max-w-md w-full h-auto object-contain"
+                        >
+                    </div>
+
+                    <!-- Right Column: Form -->
+                    <div class="w-full md:w-1/2 order-2 md:order-2">
+                        <form action="#" method="POST" class="space-y-6 max-w-lg mx-auto md:mx-0">
+                            <!-- Name Field -->
+                            <div>
+                                <label for="name" class="block text-lg font-bold text-gray-700">Name:</label>
+                                <input type="text" id="name" name="name" class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-inner focus:outline-none focus:ring-2 focus:ring-accent-orange focus:border-accent-orange transition" placeholder="Enter your name">
+                            </div>
+                            
+                            <!-- Email Field -->
+                            <div>
+                                <label for="email" class="block text-lg font-bold text-gray-700">Email:</label>
+                                <input type="email" id="email" name="email" class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-inner focus:outline-none focus:ring-2 focus:ring-accent-orange focus:border-accent-orange transition" placeholder="Enter your email">
+                            </div>
+                            
+                            <!-- Message Field -->
+                            <div>
+                                <label for="message" class="block text-lg font-bold text-gray-700">Message:</label>
+                                <textarea id="message" name="message" rows="5" class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-inner resize-y focus:outline-none focus:ring-2 focus:ring-accent-orange focus:border-accent-orange transition" placeholder="Your message"></textarea>
+                            </div>
+                            
+                            <!-- Submit Button -->
+                            <button type="submit" class="w-full flex justify-center items-center py-4 px-4 border border-transparent rounded-xl shadow-lg text-lg font-bold text-white accent-orange hover-accent-orange transition duration-150">
+                                Send <i data-lucide="send" class="w-5 h-5 ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer (Accent Orange Background) -->
+    <footer class="accent-orange text-white pt-10 pb-4 shadow-inner">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-8 md:space-y-0">
+                
+                <div class="flex-1 space-y-4">
+                    <h3 class="text-xl font-bold">Hindushree H V</h3>
+                    <p class="text-sm font-light">Passionate about building interactive and efficient applications.</p>
+                </div>
+
+                <!-- GET IN TOUCH -->
+                <div class="flex-1">
+                    <h4 class="font-bold mb-3 text-lg">GET IN TOUCH</h4>
+                    <ul class="space-y-1 text-sm">
+                        <li><strong class="font-semibold">Email:</strong> hindushreehv46@gmail.com</li>
+                        <li><strong class="font-semibold">Phone:</strong> +91-6361702971</li>
+                        <li><strong class="font-semibold">Location:</strong> Bengaluru, India</li>
+                    </ul>
+                </div>
+
+                <!-- FOLLOW ME -->
+                <div class="flex-1">
+                    <h4 class="font-bold mb-3 text-lg">FOLLOW ME</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://linkedin.com/in/Hindushree" target="_blank" class="text-white hover:text-gray-200 transition">
+                            <i data-lucide="linkedin" class="w-6 h-6"></i>
+                        </a>
+                        <a href="https://github.com/Hindukh" target="_blank" class="text-white hover:text-gray-200 transition">
+                            <i data-lucide="github" class="w-6 h-6"></i>
+                        </a>
+                        <a href="mailto:hindushreehv46@gmail.com" class="text-white hover:text-gray-200 transition">
+                            <i data-lucide="mail" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="mt-8 pt-4 border-t border-orange-600 text-center text-sm">
+                <p>Made with ❤️ by Hindushree H V</p>
+                <p class="mt-1">"Dream big, work hard, stay focused."</p>
+                <p>&copy; 2025 All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu and Icon Rendering -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Lucide icons
+            lucide.createIcons();
+
+            // Mobile menu functionality
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            menuBtn.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.toggle('hidden');
+                menuBtn.querySelector('svg').setAttribute('data-lucide', isHidden ? 'menu' : 'x');
+                lucide.createIcons(); // Re-render icons after change
+            });
+
+            // Close mobile menu on link click
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuBtn.querySelector('svg').setAttribute('data-lucide', 'menu');
+                    lucide.createIcons();
+                });
+            });
+            
+            // --- Custom JavaScript for Horizontal Scroll ---
+            const certsContainer = document.getElementById('certs-container');
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            certsContainer.addEventListener('mousedown', (e) => {
+                isDown = true;
+                certsContainer.classList.add('active-scroll');
+                startX = e.pageX - certsContainer.offsetLeft;
+                scrollLeft = certsContainer.scrollLeft;
+            });
+
+            certsContainer.addEventListener('mouseleave', () => {
+                isDown = false;
+                certsContainer.classList.remove('active-scroll');
+            });
+
+            certsContainer.addEventListener('mouseup', () => {
+                isDown = false;
+                certsContainer.classList.remove('active-scroll');
+            });
+
+            certsContainer.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - certsContainer.offsetLeft;
+                const walk = (x - startX) * 2; // Scroll-speed multiplier
+                certsContainer.scrollLeft = scrollLeft - walk;
+            });
+            // --- End Custom JavaScript for Horizontal Scroll ---
+        });
+    </script>
+
+</body>
+</html>
