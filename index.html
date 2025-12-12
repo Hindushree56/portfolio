@@ -3,585 +3,426 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hindushree H V - Portfolio</title>
+    <title>Hindushree H V | Portfolio</title>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Lucide Icons for vector icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Use Inter font -->
+    <!-- Load Lucide Icons for aesthetic vectors -->
+    <script type="module">
+        import { createIcons, AtSign, Briefcase, Code, BookOpen, Send, Github, Linkedin, Mail } from 'https://cdn.jsdelivr.net/npm/lucide-esm@latest';
+        createIcons({ icons: { AtSign, Briefcase, Code, BookOpen, Send, Github, Linkedin, Mail } });
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7f7f7; /* Light off-white background */
+        /* Custom gradient for the header and footer, matching the example's aesthetic */
+        .gradient-bg {
+            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Example gradient matching the image */
         }
-        
-        /* NEW COLOR PALETTE based on the images */
-        /* MAIN ACCENT COLOR (Orange/Coral) */
-        .accent-orange {
-            background-color: #ff9933; 
+        /* Style for the skill tags */
+        .skill-tag {
+            background-color: #fce7f3; /* Light pink background */
+            color: #9d174d; /* Darker pink text */
+            padding: 0.5rem 1rem;
+            border-radius: 9999px; /* Fully rounded */
+            font-weight: 500;
+            transition: transform 0.2s;
+            cursor: default;
         }
-        .text-accent-orange {
-            color: #ff9933;
+        .skill-tag:hover {
+            transform: scale(1.05);
         }
-        .border-accent-orange {
-            border-color: #ff9933;
-        }
-        .hover-accent-orange:hover {
-            background-color: #e68a2e; /* Slightly darker hover */
-        }
-        
-        /* SECONDARY ACCENT (Used for dark text/details) */
-        .tech-tag {
-            background-color: #4b5563; /* Darker grey for readability */
-        }
-
-        /* Section Title Styling */
-        .section-title {
-            color: #ff9933; /* Accent Orange */
-            font-size: 2.5rem;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 2.5rem;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background-color: #ff9933; /* Accent Orange underline */
-            margin: 10px auto 0;
+        /* Custom style for section title underline */
+        .section-underline {
+            width: 50px;
+            height: 3px;
+            background-color: #ff7e5f;
+            margin: 0.5rem auto 2rem auto;
             border-radius: 9999px;
         }
-        
-        /* Project card styling (Maintaining the structure from last update) */
-        .project-card {
+        /* Style for project and certificate cards */
+        .card {
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease-in-out;
-            border-radius: 1rem;
-            overflow: hidden;
+            transition: transform 0.3s ease;
         }
-        .project-card:hover {
+        .card:hover {
             transform: translateY(-5px);
         }
-        .certificate-card {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease-in-out;
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
         }
 
-        /* Custom Styles for Horizontal Scrolling Certifications */
-        #certs-container::-webkit-scrollbar {
-            height: 0;
+        /* CSS for the floating animation */
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
-        #certs-container {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            cursor: grab;
-        }
-        .certificate-card-wrapper {
-            flex: 0 0 auto;
-            width: 300px;
-            margin-right: 1.5rem;
+        .animate-float {
+            animation: floating 3s ease-in-out infinite;
         }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="bg-gray-50 text-gray-800">
 
-    <!-- Header & Navigation Bar (Accent Orange Background) -->
-    <header id="home" class="sticky top-0 z-50 accent-orange shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
-            <!-- Logo/Name -->
-            <div class="text-white text-2xl font-bold">
-                Hindushree H V
-                <span class="block text-sm font-light -mt-1">Full Stack Developer | AI/ML Enthusiast</span>
+    <!-- 1. HEADER / NAVIGATION BAR -->
+    <header id="home" class="sticky top-0 z-50 shadow-md">
+        <nav class="gradient-bg text-white p-4">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+                
+                <!-- Logo/Name Area -->
+                <div class="text-center md:text-left mb-3 md:mb-0">
+                    <h1 class="text-2xl font-bold tracking-wide">Hindushree H V</h1>
+                    <p class="text-sm font-light">Computer Science Student / Aspiring Full Stack & AI/ML Developer</p>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="flex flex-wrap justify-center space-x-4 sm:space-x-8">
+                    <a href="#about" class="flex items-center hover:text-gray-200 transition duration-150">
+                        <i data-lucide="at-sign" class="w-4 h-4 mr-1"></i> About
+                    </a>
+                    <a href="#projects" class="flex items-center hover:text-gray-200 transition duration-150">
+                        <i data-lucide="briefcase" class="w-4 h-4 mr-1"></i> Projects
+                    </a>
+                    <a href="#certificates" class="flex items-center hover:text-gray-200 transition duration-150">
+                        <i data-lucide="book-open" class="w-4 h-4 mr-1"></i> Certificates
+                    </a>
+                    <a href="#contact" class="flex items-center hover:text-gray-200 transition duration-150">
+                        <i data-lucide="send" class="w-4 h-4 mr-1"></i> Contact
+                    </a>
+                </div>
             </div>
-
-            <!-- Navigation Links (Desktop) -->
-            <nav class="hidden md:flex space-x-6 text-white font-medium">
-                <a href="#about" class="hover:text-gray-200 transition duration-150 flex items-center">
-                    <i data-lucide="user" class="w-4 h-4 mr-1"></i>About
-                </a>
-                <a href="#skills" class="hover:text-gray-200 transition duration-150 flex items-center">
-                    <i data-lucide="wrench" class="w-4 h-4 mr-1"></i>Skills
-                </a>
-                <a href="#projects" class="hover:text-gray-200 transition duration-150 flex items-center">
-                    <i data-lucide="folder-open" class="w-4 h-4 mr-1"></i>Projects
-                </a>
-                <a href="#certs" class="hover:text-gray-200 transition duration-150 flex items-center">
-                    <i data-lucide="award" class="w-4 h-4 mr-1"></i>Certs
-                </a>
-                <a href="#contact" class="hover:text-gray-200 transition duration-150 flex items-center">
-                    <i data-lucide="mail" class="w-4 h-4 mr-1"></i>Contact
-                </a>
-                <!-- Resume Link Button (White Background, Accent Orange Text) -->
-                <a href="Hindushree_Resume.pdf.pdf" target="_blank" class="bg-white text-accent-orange px-4 py-2 rounded-lg hover:bg-gray-100 transition duration-150 shadow-md flex items-center">
-                    <i data-lucide="file-text" class="w-4 h-4 mr-1"></i>Resume
-                </a>
-            </nav>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu (Hidden by Default) -->
-        <nav id="mobile-menu" class="hidden md:hidden bg-orange-500 px-4 pb-4 space-y-2 text-white font-medium">
-            <a href="#about" class="block py-2 hover:bg-orange-600 rounded-lg transition duration-150 flex items-center"><i data-lucide="user" class="w-4 h-4 mr-2"></i>About</a>
-            <a href="#skills" class="block py-2 hover:bg-orange-600 rounded-lg transition duration-150 flex items-center"><i data-lucide="wrench" class="w-4 h-4 mr-2"></i>Skills</a>
-            <a href="#projects" class="block py-2 hover:bg-orange-600 rounded-lg transition duration-150 flex items-center"><i data-lucide="folder-open" class="w-4 h-4 mr-2"></i>Projects</a>
-            <a href="#certs" class="block py-2 hover:bg-orange-600 rounded-lg transition duration-150 flex items-center"><i data-lucide="award" class="w-4 h-4 mr-2"></i>Certs</a>
-            <a href="#contact" class="block py-2 hover:bg-orange-600 rounded-lg transition duration-150 flex items-center"><i data-lucide="mail" class="w-4 h-4 mr-2"></i>Contact</a>
-            <a href="Hindushree_Resume.pdf.pdf" target="_blank" class="block py-2 bg-white text-accent-orange rounded-lg text-center hover:bg-gray-100 transition duration-150 flex items-center justify-center"><i data-lucide="file-text" class="w-4 h-4 mr-2"></i>View Resume</a>
         </nav>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- About Me Section -->
-        <section id="about" class="py-16 md:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="section-title">ABOUT ME</h2>
-                <div class="flex flex-col md:flex-row items-center gap-10">
-                    <!-- Profile Picture Placeholder -->
-                    <div class="md:w-1/3 flex justify-center">
-                        <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden bg-orange-100 p-2 border-4 border-accent-orange">
-                            <img src="https://placehold.co/800x800/ff9933/ffffff?text=Hindushree+Profile" alt="Profile Picture Placeholder" class="w-full h-full object-cover rounded-full">
-                            <!-- Subtle Orange Ring Effect -->
-                            <div class="absolute inset-0 rounded-full" style="background: radial-gradient(circle at 100% 100%, rgba(255,255,255,0.8) 0%, rgba(255,153,51,0.5) 70%);"></div>
-                        </div>
-                    </div>
-                    <!-- Professional Summary -->
-                    <div class="md:w-2/3 text-lg space-y-4 text-gray-700">
-                        <p>
-                            Hello, I'm <strong class="text-accent-orange">Hindushree H V</strong>, a Computer Science student with a strong technical foundation in **Full Stack Development** and **Machine Learning**. I am passionate about building secure, scalable, and intelligent applications that solve real-world problems.
-                        </p>
-                        <p>
-                            I specialize in integrating various technologies, ranging from **React.js, Node.js, and Flask** for web application development, to **Python, TensorFlow, and Scikit-learn** for AI/ML systems. My goal is to apply my knowledge to roles in Software Development or AI-driven systems.
-                        </p>
-                        <p>
-                            I am actively pursuing my **Master of Computer Application** at NMAM Institute of Technology, Nitte, which complements my foundation in my Bachelor of Computer Application. I am constantly expanding my knowledge through advanced courses and hands-on projects.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-        <!-- Technologies & Tools Section (Skills) -->
-        <section id="skills" class="py-16 md:py-24 bg-gray-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="section-title">TECHNOLOGIES & TOOLS I WORK WITH</h2>
-
-                <!-- Skills List -->
-                <div class="flex flex-wrap justify-center gap-4 mt-12">
-                    <!-- All tags use the same dark professional color (#4b5563) -->
-                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">Python</span>
-                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">C/C++</span>
-                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">React.js</span>
-                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">Node.js</span>
-                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">Flask</span>
-                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">HTML & CSS</span>
-                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">JavaScript</span>
-                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">Bootstrap 5</span>
-                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">AngularJS (Legacy)</span>
-                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">MongoDB</span>
-                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">MySQL & SQL</span>
-                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">GitHub & VS Code</span>
-                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">XAMPP</span>
-                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">TensorFlow & Keras</span>
-                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">Scikit-learn</span>
-                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">Pandas & NumPy</span>
-                    <span class="px-5 py-2.5 text-base font-semibold text-white tech-tag rounded-full shadow-lg hover:bg-gray-700 transition">Computer Vision (OpenCV, MediaPipe)</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="py-16 md:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="section-title">PROJECTS</h2>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
-
-                    <!-- Project 1: Diabetes Prediction Using Machine Learning -->
-                    <div class="project-card bg-white">
-                        <!-- Project Visual Placeholder -->
-                        <div class="h-40 bg-orange-100 flex items-center justify-center overflow-hidden border-b-4 border-accent-orange">
-                            <!-- Placeholder image/visual that matches the image reference style -->
-                            <img src="https://placehold.co/600x400/ff9933/ffffff?text=AI+Prediction+App" 
-                                 alt="AI Prediction Project Screenshot" 
-                                 class="w-full h-full object-cover">
-                        </div>
-                        
-                        <div class="p-4 flex flex-col h-[calc(100%-10rem)]">
-                            <div class="flex-grow">
-                                <h3 class="text-xl font-bold text-gray-900 mb-1">Diabetes Prediction Using ML</h3>
-                                <p class="text-sm text-gray-500 mb-3">Full Stack + AIML | May 2024 - June 2024</p>
-                                <p class="text-gray-700 text-sm leading-relaxed mb-4">
-                                    Developed an AI-based stress detection model using physiological signals (EDA, HR), employing ML algorithms like SVM, Random Forest, and CNN.
-                                </p>
-                                <ul class="flex flex-wrap gap-2 mb-4">
-                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">Python</li>
-                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">Flask</li>
-                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">Scikit-learn</li>
-                                </ul>
-                            </div>
-                            <!-- Buttons -->
-                            <div class="flex justify-between space-x-2 mt-auto pt-2 border-t border-gray-100">
-                                <a href="#" class="w-full text-center text-sm font-semibold text-white accent-orange hover-accent-orange py-2 rounded-lg transition duration-150">View Demo (N/A)</a>
-                                <a href="https://github.com/Hindukh" target="_blank" class="w-full text-center text-sm font-semibold text-accent-orange border border-accent-orange hover:bg-orange-50 py-2 rounded-lg transition duration-150">View Code</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 2: Sign Language Translator -->
-                    <div class="project-card bg-white">
-                        <!-- Project Visual Placeholder -->
-                        <div class="h-40 bg-orange-100 flex items-center justify-center overflow-hidden border-b-4 border-accent-orange">
-                             <img src="https://placehold.co/600x400/ff9933/ffffff?text=ASL+Translator" 
-                                 alt="Sign Language Translator Project Screenshot" 
-                                 class="w-full h-full object-cover">
-                        </div>
-                        
-                        <div class="p-4 flex flex-col h-[calc(100%-10rem)]">
-                            <div class="flex-grow">
-                                <h3 class="text-xl font-bold mt-2 text-gray-900 mb-1">Sign Language Translator</h3>
-                                <p class="text-sm text-gray-500 mb-3">ML + Computer Vision</p>
-                                <p class="text-gray-700 text-sm leading-relaxed mb-4">
-                                    Developed a real-time translator using CNN, MediaPipe, and OpenCV to recognize ASL hand gestures (A-Z) and convert them into text and speech.
-                                </p>
-                                <ul class="flex flex-wrap gap-2 mb-4">
-                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">Python</li>
-                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">TensorFlow</li>
-                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">OpenCV</li>
-                                </ul>
-                            </div>
-                            <!-- Buttons -->
-                            <div class="flex justify-between space-x-2 mt-auto pt-2 border-t border-gray-100">
-                                <a href="#" class="w-full text-center text-sm font-semibold text-white accent-orange hover-accent-orange py-2 rounded-lg transition duration-150">View Demo (N/A)</a>
-                                <a href="https://github.com/Hindukh" target="_blank" class="w-full text-center text-sm font-semibold text-accent-orange border border-accent-orange hover:bg-orange-50 py-2 rounded-lg transition duration-150">View Code</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3: Attendance System -->
-                    <div class="project-card bg-white">
-                        <!-- Project Visual Placeholder -->
-                        <div class="h-40 bg-orange-100 flex items-center justify-center overflow-hidden border-b-4 border-accent-orange">
-                             <img src="https://placehold.co/600x400/ff9933/ffffff?text=Attendance+System" 
-                                 alt="Attendance System Project Screenshot" 
-                                 class="w-full h-full object-cover">
-                        </div>
-                        
-                        <div class="p-4 flex flex-col h-[calc(100%-10rem)]">
-                            <div class="flex-grow">
-                                <h3 class="text-xl font-bold mt-2 text-gray-900 mb-1">Attendance System</h3>
-                                <p class="text-sm text-gray-500 mb-3">Full Stack | March 2025 - April 2025</p>
-                                <p class="text-gray-700 text-sm leading-relaxed mb-4">
-                                    Developed a web-based system using PHP and MySQL to manage student data, mark attendance, and generate automated reports using XAMPP.
-                                </p>
-                                <ul class="flex flex-wrap gap-2 mb-4">
-                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">PHP</li>
-                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">MySQL</li>
-                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">HTML/CSS/JS</li>
-                                </ul>
-                            </div>
-                            <!-- Buttons -->
-                            <div class="flex justify-between space-x-2 mt-auto pt-2 border-t border-gray-100">
-                                <a href="#" class="w-full text-center text-sm font-semibold text-white accent-orange hover-accent-orange py-2 rounded-lg transition duration-150">View Demo (N/A)</a>
-                                <a href="https://github.com/Hindukh" target="_blank" class="w-full text-center text-sm font-semibold text-accent-orange border border-accent-orange hover:bg-orange-50 py-2 rounded-lg transition duration-150">View Code</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 4: Event Management Web App -->
-                    <div class="project-card bg-white">
-                        <!-- Project Visual Placeholder -->
-                        <div class="h-40 bg-orange-100 flex items-center justify-center overflow-hidden border-b-4 border-accent-orange">
-                             <img src="https://placehold.co/600x400/ff9933/ffffff?text=Event+Management+App" 
-                                 alt="Event Management App Project Screenshot" 
-                                 class="w-full h-full object-cover">
-                        </div>
-                        
-                        <div class="p-4 flex flex-col h-[calc(100%-10rem)]">
-                            <div class="flex-grow">
-                                <h3 class="text-xl font-bold mt-2 text-gray-900 mb-1">Event Management App</h3>
-                                <p class="text-sm text-gray-500 mb-3">Full-Stack | July 2025 - Aug 2025</p>
-                                <p class="text-gray-700 text-sm leading-relaxed mb-4">
-                                    Developed a responsive web app with user login, event creation/editing, search, image upload, CSV export, and a light/dark mode UI using modern web frameworks.
-                                </p>
-                                <ul class="flex flex-wrap gap-2 mb-4">
-                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">HTML5/CSS3</li>
-                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">Bootstrap 5</li>
-                                    <li class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">AngularJS</li>
-                                </ul>
-                            </div>
-                            <!-- Buttons -->
-                            <div class="flex justify-between space-x-2 mt-auto pt-2 border-t border-gray-100">
-                                <a href="#" class="w-full text-center text-sm font-semibold text-white accent-orange hover-accent-orange py-2 rounded-lg transition duration-150">View Demo (N/A)</a>
-                                <a href="https://github.com/Hindukh" target="_blank" class="w-full text-center text-sm font-semibold text-accent-orange border border-accent-orange hover:bg-orange-50 py-2 rounded-lg transition duration-150">View Code</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Courses & Certifications Section (Horizontal Scroll) -->
-        <section id="certs" class="py-16 md:py-24 bg-gray-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="section-title">COURSES & CERTIFICATIONS</h2>
-
-                <!-- Horizontal Scroll Container -->
-                <div id="certs-container" class="flex overflow-x-auto whitespace-nowrap py-4 -mx-4 px-4 scroll-smooth">
-                    
-                    <!-- Certification Card 1 -->
-                    <div class="certificate-card-wrapper">
-                        <div class="certificate-card bg-white p-6 rounded-xl border-l-4 border-accent-orange h-full flex flex-col justify-start">
-                            <div class="flex items-start">
-                                <i data-lucide="certificate" class="w-6 h-6 mr-4 text-accent-orange flex-shrink-0"></i>
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-900">Full Stack Development</h3>
-                                    <p class="text-base font-medium text-gray-600">Coursera (Meta)</p>
-                                </div>
-                            </div>
-                            <p class="text-sm text-gray-500 mt-4 leading-relaxed">Completed an extensive program covering the full web development lifecycle, focusing on modern front-end and back-end technologies.</p>
-                            <a href="#" class="mt-4 text-sm font-semibold text-accent-orange hover:underline inline-flex items-center">
-                                View Credential <i data-lucide="external-link" class="w-3 h-3 ml-1"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Certification Card 2 -->
-                    <div class="certificate-card-wrapper">
-                        <div class="certificate-card bg-white p-6 rounded-xl border-l-4 border-accent-orange h-full flex flex-col justify-start">
-                            <div class="flex items-start">
-                                <i data-lucide="certificate" class="w-6 h-6 mr-4 text-accent-orange flex-shrink-0"></i>
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-900">Introduction to MongoDB</h3>
-                                    <p class="text-base font-medium text-gray-600">Coursera</p>
-                                </div>
-                            </div>
-                            <p class="text-sm text-gray-500 mt-4 leading-relaxed">Deep dive into NoSQL database management, indexing, aggregation pipelines, and MongoDB architecture.</p>
-                            <a href="#" class="mt-4 text-sm font-semibold text-accent-orange hover:underline inline-flex items-center">
-                                View Credential <i data-lucide="external-link" class="w-3 h-3 ml-1"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Certification Card 3 -->
-                    <div class="certificate-card-wrapper">
-                        <div class="certificate-card bg-white p-6 rounded-xl border-l-4 border-accent-orange h-full flex flex-col justify-start">
-                            <div class="flex items-start">
-                                <i data-lucide="certificate" class="w-6 h-6 mr-4 text-accent-orange flex-shrink-0"></i>
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-900">Microsoft Azure, AI and Applied AI</h3>
-                                    <p class="text-base font-medium text-gray-600">Learning Challenges</p>
-                                </div>
-                            </div>
-                            <p class="text-sm text-gray-500 mt-4 leading-relaxed">Training on cloud computing principles, core AI concepts, and deploying applied AI solutions using Azure services.</p>
-                            <a href="#" class="mt-4 text-sm font-semibold text-accent-orange hover:underline inline-flex items-center">
-                                View Credential <i data-lucide="external-link" class="w-3 h-3 ml-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Certification Card 4 -->
-                    <div class="certificate-card-wrapper">
-                        <div class="certificate-card bg-white p-6 rounded-xl border-l-4 border-accent-orange h-full flex flex-col justify-start">
-                            <div class="flex items-start">
-                                <i data-lucide="certificate" class="w-6 h-6 mr-4 text-accent-orange flex-shrink-0"></i>
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-900">Cloud Computing SDP</h3>
-                                    <p class="text-base font-medium text-gray-600">Wipfli, Bengaluru</p>
-                                </div>
-                            </div>
-                            <p class="text-sm text-gray-500 mt-4 leading-relaxed">Specialized program on Software Development Practices, focused on efficient workflows within Cloud Environments.</p>
-                            <a href="#" class="mt-4 text-sm font-semibold text-accent-orange hover:underline inline-flex items-center">
-                                View Credential <i data-lucide="external-link" class="w-3 h-3 ml-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Certification Card 5 (Example of another cert from resume) -->
-                    <div class="certificate-card-wrapper">
-                        <div class="certificate-card bg-white p-6 rounded-xl border-l-4 border-accent-orange h-full flex flex-col justify-start">
-                            <div class="flex items-start">
-                                <i data-lucide="certificate" class="w-6 h-6 mr-4 text-accent-orange flex-shrink-0"></i>
-                                <div>
-                                    <h3 class="text-xl font-bold text-gray-900">Prompt Engineering for ChatGPT</h3>
-                                    <p class="text-base font-medium text-gray-600">GreatLearning</p>
-                                </div>
-                            </div>
-                            <p class="text-sm text-gray-500 mt-4 leading-relaxed">Learned advanced techniques for designing effective prompts for large language models to optimize outputs.</p>
-                            <a href="#" class="mt-4 text-sm font-semibold text-accent-orange hover:underline inline-flex items-center">
-                                View Credential <i data-lucide="external-link" class="w-3 h-3 ml-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Horizontal Scroll Container -->
-            </div>
-        </section>
-
-
-        <!-- Contact Me Section -->
-        <section id="contact" class="py-16 md:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="section-title">CONTACT ME</h2>
+        <!-- 2. HOME SCREEN / ABOUT ME SECTION (Updated Layout and Animation) -->
+        <section id="about" class="text-center py-16">
+            <h2 class="text-4xl font-extrabold mb-2 text-gray-900">ABOUT ME</h2>
+            <div class="section-underline"></div>
+            
+            <div class="flex flex-col lg:flex-row items-center lg:space-x-12">
                 
-                <!-- Two-Column Contact Layout -->
-                <div class="mt-12 flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
-                    
-                    <!-- Left Column: Illustration -->
-                    <div class="md:w-1/2 flex justify-center order-1 md:order-1">
-                        <!-- Using the image from the reference (or an appropriate placeholder) -->
+                <!-- Profile Image (Moved to the left and added floating animation) -->
+                <div class="lg:w-1/3 mt-8 lg:mt-0 flex justify-center order-1 lg:order-1">
+                    <div class="w-64 h-64 bg-gray-300 rounded-full overflow-hidden shadow-xl border-4 border-pink-400 p-1 animate-float">
+                        <!-- Profile Image Source Updated -->
+                        <!-- OLD: <img src="https://placehold.co/250x250/FCAE9D/FFFFFF?text=HINDUSHREE+H+V" alt="Hindushree H V Profile Picture Placeholder" class="w-full h-full object-cover rounded-full"> -->
                         <img 
-                            src="https://raw.githubusercontent.com/Hindukh/Portfolio/main/contact_illustration.png" 
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x400/ff9933/ffffff?text=Contact+Illustration'"
-                            alt="Illustration of a person using a mobile phone surrounded by hearts" 
-                            class="max-w-xs md:max-w-md w-full h-auto object-contain"
+                            src="Picture.jpg" 
+                            alt="Hindushree H V Profile Picture" 
+                            class="w-full h-full object-cover rounded-full"
+                            onerror="this.onerror=null; this.src='https://placehold.co/250x250/FCAE9D/FFFFFF?text=HINDUSHREE+H+V';"
                         >
                     </div>
+                </div>
 
-                    <!-- Right Column: Form -->
-                    <div class="w-full md:w-1/2 order-2 md:order-2">
-                        <form action="#" method="POST" class="space-y-6 max-w-lg mx-auto md:mx-0">
-                            <!-- Name Field -->
-                            <div>
-                                <label for="name" class="block text-lg font-bold text-gray-700">Name:</label>
-                                <input type="text" id="name" name="name" class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-inner focus:outline-none focus:ring-2 focus:ring-accent-orange focus:border-accent-orange transition" placeholder="Enter your name">
-                            </div>
-                            
-                            <!-- Email Field -->
-                            <div>
-                                <label for="email" class="block text-lg font-bold text-gray-700">Email:</label>
-                                <input type="email" id="email" name="email" class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-inner focus:outline-none focus:ring-2 focus:ring-accent-orange focus:border-accent-orange transition" placeholder="Enter your email">
-                            </div>
-                            
-                            <!-- Message Field -->
-                            <div>
-                                <label for="message" class="block text-lg font-bold text-gray-700">Message:</label>
-                                <textarea id="message" name="message" rows="5" class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-inner resize-y focus:outline-none focus:ring-2 focus:ring-accent-orange focus:border-accent-orange transition" placeholder="Your message"></textarea>
-                            </div>
-                            
-                            <!-- Submit Button -->
-                            <button type="submit" class="w-full flex justify-center items-center py-4 px-4 border border-transparent rounded-xl shadow-lg text-lg font-bold text-white accent-orange hover-accent-orange transition duration-150">
-                                Send <i data-lucide="send" class="w-5 h-5 ml-2"></i>
-                            </button>
-                        </form>
-                    </div>
+                <!-- About Text (Moved to the right) -->
+                <div class="lg:w-2/3 text-lg space-y-4 text-left order-2 lg:order-2 mt-8 lg:mt-0">
+                    <p>
+                        Hello, I'm **Hindushree H V**, a passionate Computer Science student from Bengaluru. I possess a **strong technical foundation** and hands-on experience in both **Full Stack Development and Machine Learning**. I have a keen eye for detail and a drive for creating secure, scalable, and highly interactive applications.
+                    </p>
+                    <p>
+                        I am currently pursuing my **Master of Computer Application (MCA)** at NMAM Institute of Technology, Nitte, following a **Bachelor of Computer Application (BCA)** from KLE Society's S Nijalingappa College.
+                    </p>
+                    <p>
+                        I am proficient in core technologies like **Python, React.js, Node.js, and Flask**, and I actively focus on bridging the gap between robust backend systems and intuitive user interfaces. I am actively seeking challenging roles in **Software Development or AI/ML-driven systems** where I can apply my diverse skillset.
+                    </p>
                 </div>
             </div>
         </section>
 
-    </main>
+        <!-- 3. TECHNOLOGIES & TOOLS SECTION -->
+        <section id="technologies" class="text-center py-16 bg-white rounded-xl">
+            <h2 class="text-4xl font-extrabold mb-2 text-gray-900">TECHNOLOGIES & TOOLS I WORK WITH</h2>
+            <div class="section-underline"></div>
+            
+            <div class="flex flex-wrap justify-center gap-3 sm:gap-4 p-4">
+                <!-- Programming -->
+                <span class="skill-tag">C / C++</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Data Structures & Algorithms</span>
 
-    <!-- Footer (Accent Orange Background) -->
-    <footer class="accent-orange text-white pt-10 pb-4 shadow-inner">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-8 md:space-y-0">
-                
-                <div class="flex-1 space-y-4">
-                    <h3 class="text-xl font-bold">Hindushree H V</h3>
-                    <p class="text-sm font-light">Passionate about building interactive and efficient applications.</p>
+                <!-- Web Development -->
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">CSS</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">React.js</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">Flask (for Web Apps)</span>
+                <span class="skill-tag">PHP (from Attendance Project)</span>
+                <span class="skill-tag">Bootstrap 5 / Responsive Design</span>
+                <span class="skill-tag">AngularJS / jQuery (from Event Management Project)</span>
+
+                <!-- AI / ML -->
+                <span class="skill-tag">Scikit-learn</span>
+                <span class="skill-tag">Matplotlib & Seaborn</span>
+                <span class="skill-tag">TensorFlow / Keras</span>
+                <span class="skill-tag">MediaPipe / OpenCV</span>
+                <span class="skill-tag">Streamlit</span>
+                <span class="skill-tag">NumPy / Pandas</span>
+
+                <!-- Databases & Tools -->
+                <span class="skill-tag">MySQL / SQL</span>
+                <span class="skill-tag">Oracle</span>
+                <span class="skill-tag">MongoDB</span>
+                <span class="skill-tag">Git & GitHub</span>
+                <span class="skill-tag">VS Code / Eclipse</span>
+            </div>
+        </section>
+
+        <!-- 4. PROJECTS SECTION -->
+        <section id="projects" class="py-16">
+            <h2 class="text-4xl font-extrabold text-center mb-2 text-gray-900">PROJECTS</h2>
+            <div class="section-underline"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Project 1: Diabetes Prediction / AI-based Stress Detection -->
+                <div class="card bg-white p-6 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <!-- Placeholder Image/Icon (matching the example style) -->
+                        <div class="h-40 bg-pink-100 mb-4 rounded-lg flex items-center justify-center">
+                            <i data-lucide="briefcase" class="w-12 h-12 text-pink-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">AI-Based Stress Detection & Prediction</h3>
+                        <p class="text-sm font-semibold text-pink-600 mb-3">Full Stack + AIML - May 2024 - June 2024</p>
+                        <p class="text-gray-600 text-sm">
+                            Developed an AI-based stress detection model using physiological signals (EDA, HR), employing advanced data preprocessing and training **ML algorithms (SVM, Random Forest, CNN)**.
+                        </p>
+                        <p class="text-gray-600 text-sm mt-2">
+                            Built a **Flask-based web application** providing real-time stress predictions, live-updating graphs, and automatic user input logging for interactive monitoring.
+                        </p>
+                    </div>
+                    <p class="mt-4 text-xs font-medium text-gray-500">Tech Stack: Python, Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn, Flask</p>
+                    <a href="https://github.com/Hindukh" target="_blank" class="mt-4 inline-block text-center view-code-btn border border-gray-300 rounded-lg py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition">View Code</a>
                 </div>
 
-                <!-- GET IN TOUCH -->
-                <div class="flex-1">
-                    <h4 class="font-bold mb-3 text-lg">GET IN TOUCH</h4>
-                    <ul class="space-y-1 text-sm">
-                        <li><strong class="font-semibold">Email:</strong> hindushreehv46@gmail.com</li>
-                        <li><strong class="font-semibold">Phone:</strong> +91-6361702971</li>
-                        <li><strong class="font-semibold">Location:</strong> Bengaluru, India</li>
+                <!-- Project 2: Sign Language Translator -->
+                <div class="card bg-white p-6 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <!-- Placeholder Image/Icon (matching the example style) -->
+                        <div class="h-40 bg-purple-100 mb-4 rounded-lg flex items-center justify-center">
+                            <i data-lucide="code" class="w-12 h-12 text-purple-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Sign Language Translator (A-Z)</h3>
+                        <p class="text-sm font-semibold text-purple-600 mb-3">Machine Learning + Computer Vision</p>
+                        <p class="text-gray-600 text-sm">
+                            Developed a **real-time Sign Language Translator** using **CNN, MediaPipe, and OpenCV** to recognize ASL hand gestures (A-Z) and convert them into text and speech.
+                        </p>
+                        <p class="text-gray-600 text-sm mt-2">
+                            Built a complete ML pipeline including dataset preparation, model training, evaluation, and real-time deployment with high prediction accuracy.
+                        </p>
+                    </div>
+                    <p class="mt-4 text-xs font-medium text-gray-500">Tech Stack: Python, TensorFlow, Keras, MediaPipe, OpenCV, NumPy, Streamlit</p>
+                    <a href="https://github.com/Hindukh" target="_blank" class="mt-4 inline-block text-center view-code-btn border border-gray-300 rounded-lg py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition">View Code</a>
+                </div>
+
+                <!-- Project 3: Attendance System -->
+                <div class="card bg-white p-6 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <!-- Placeholder Image/Icon (matching the example style) -->
+                        <div class="h-40 bg-green-100 mb-4 rounded-lg flex items-center justify-center">
+                            <i data-lucide="book-open" class="w-12 h-12 text-green-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Student Attendance Management System</h3>
+                        <p class="text-sm font-semibold text-green-600 mb-3">Full Stack / Web Development - Mar 2025 - Apr 2025</p>
+                        <p class="text-gray-600 text-sm">
+                            Developed a secure, web-based system using **PHP and MySQL** to efficiently manage student data, mark attendance, and generate automated reports for educational institutions.
+                        </p>
+                        <p class="text-gray-600 text-sm mt-2">
+                            The system ensures high data accuracy, features a user-friendly interface, and is easily deployed using XAMPP.
+                        </p>
+                    </div>
+                    <p class="mt-4 text-xs font-medium text-gray-500">Tech Stack: PHP, MySQL, HTML, CSS, JavaScript, XAMPP</p>
+                    <a href="https://github.com/Hindukh" target="_blank" class="mt-4 inline-block text-center view-code-btn border border-gray-300 rounded-lg py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition">View Code</a>
+                </div>
+
+                <!-- Project 4: Event Management -->
+                <div class="card bg-white p-6 rounded-lg flex flex-col justify-between">
+                    <div>
+                        <!-- Placeholder Image/Icon (matching the example style) -->
+                        <div class="h-40 bg-yellow-100 mb-4 rounded-lg flex items-center justify-center">
+                            <i data-lucide="send" class="w-12 h-12 text-yellow-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Responsive Event Management Web App</h3>
+                        <p class="text-sm font-semibold text-yellow-600 mb-3">Full Stack Web Development - Jul 2025 - Aug 2025</p>
+                        <p class="text-gray-600 text-sm">
+                            Developed a comprehensive, responsive event management application featuring user login, event creation/editing, search functionality, image uploads, and CSV data export.
+                        </p>
+                        <p class="text-gray-600 text-sm mt-2">
+                            Implemented dynamic features like light/dark mode UI using **Bootstrap** and leveraged **AngularJS and jQuery** for a clean, professional design and dynamic interaction.
+                        </p>
+                    </div>
+                    <p class="mt-4 text-xs font-medium text-gray-500">Tech Stack: HTML5, CSS3, Bootstrap 5, AngularJS, jQuery, JavaScript</p>
+                    <a href="https://github.com/Hindukh" target="_blank" class="mt-4 inline-block text-center view-code-btn border border-gray-300 rounded-lg py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition">View Code</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. CERTIFICATES SECTION -->
+        <section id="certificates" class="py-16 bg-white rounded-xl">
+            <h2 class="text-4xl font-extrabold text-center mb-2 text-gray-900">COURSES & CERTIFICATIONS</h2>
+            <div class="section-underline"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Certificate 1: Prompt Engineering for ChatGPT -->
+                <div class="card p-6 rounded-lg border border-gray-200">
+                    <div class="h-40 bg-gray-100 mb-4 rounded-lg flex items-center justify-center text-center p-4">
+                        <img src="https://placehold.co/200x150/f0f0f0/888?text=Prompt+Engineering" alt="Certificate Placeholder" class="max-h-full max-w-full rounded-md object-contain">
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Prompt Engineering for ChatGPT</h3>
+                    <p class="text-sm font-semibold text-pink-600 mb-3">GreatLearning</p>
+                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                        <li>**Key Focus:** Designing and refining effective prompts for LLMs.</li>
+                        <li>Maximizing output quality and utilizing AI tools efficiently.</li>
+                    </ul>
+                </div>
+                
+                <!-- Certificate 2: Full Stack Development -->
+                <div class="card p-6 rounded-lg border border-gray-200">
+                    <div class="h-40 bg-gray-100 mb-4 rounded-lg flex items-center justify-center text-center p-4">
+                        <img src="https://placehold.co/200x150/f0f0f0/888?text=Meta+Full+Stack" alt="Certificate Placeholder" class="max-h-full max-w-full rounded-md object-contain">
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Full Stack Development</h3>
+                    <p class="text-sm font-semibold text-pink-600 mb-3">Coursera (Meta)</p>
+                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                        <li>**Key Focus:** Comprehensive training on MERN/Meta's full-stack applications.</li>
+                        <li>Covering frontend technologies (React) and backend development.</li>
                     </ul>
                 </div>
 
-                <!-- FOLLOW ME -->
-                <div class="flex-1">
-                    <h4 class="font-bold mb-3 text-lg">FOLLOW ME</h4>
-                    <div class="flex space-x-4">
-                        <a href="https://linkedin.com/in/Hindushree" target="_blank" class="text-white hover:text-gray-200 transition">
-                            <i data-lucide="linkedin" class="w-6 h-6"></i>
+                <!-- Certificate 3: Introduction to MongoDB -->
+                <div class="card p-6 rounded-lg border border-gray-200">
+                    <div class="h-40 bg-gray-100 mb-4 rounded-lg flex items-center justify-center text-center p-4">
+                        <img src="https://placehold.co/200x150/f0f0f0/888?text=MongoDB+Intro" alt="Certificate Placeholder" class="max-h-full max-w-full rounded-md object-contain">
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Introduction to MongoDB</h3>
+                    <p class="text-sm font-semibold text-pink-600 mb-3">Coursera</p>
+                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                        <li>**Key Focus:** NoSQL database modeling and querying.</li>
+                        <li>Understanding document structures and best practices for MongoDB development.</li>
+                    </ul>
+                </div>
+                
+                <!-- Certificate 4: Microsoft Azure, AI and Applied AI Learning Challenges -->
+                <div class="card p-6 rounded-lg border border-gray-200">
+                    <div class="h-40 bg-gray-100 mb-4 rounded-lg flex items-center justify-center text-center p-4">
+                        <img src="https://placehold.co/200x150/f0f0f0/888?text=Azure+AI" alt="Certificate Placeholder" class="max-h-full max-w-full rounded-md object-contain">
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Microsoft Azure, AI and Applied AI</h3>
+                    <p class="text-sm font-semibold text-pink-600 mb-3">Microsoft/Various Challenges</p>
+                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                        <li>**Key Focus:** Cloud computing concepts, AI services deployment on Azure.</li>
+                        <li>Applied AI principles and solutions.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. CONTACT ME SECTION -->
+        <section id="contact" class="py-16">
+            <h2 class="text-4xl font-extrabold text-center mb-2 text-gray-900">CONTACT ME</h2>
+            <div class="section-underline"></div>
+            
+            <div class="flex flex-col lg:flex-row bg-white p-8 rounded-xl shadow-lg">
+                
+                <!-- Image Area (Matching the example) -->
+                <div class="lg:w-1/2 flex items-center justify-center p-4 hidden md:flex">
+                    <!-- Placeholder Image (Replace with a custom SVG or illustration if desired) -->
+                    <img 
+                        src="https://placehold.co/400x400/FCAE9D/FFFFFF?text=Let's+Connect" 
+                        alt="Illustration of a person sending messages" 
+                        class="w-full max-w-md h-auto object-contain rounded-lg"
+                    >
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:w-1/2 p-4">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name:</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your name" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 transition">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email:</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 transition">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message:</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Your message" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 transition"></textarea>
+                        </div>
+                        <button type="submit" class="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white gradient-bg hover:shadow-lg transition duration-200">
+                            Send <i data-lucide="send" class="w-4 h-4 ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="gradient-bg text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center md:text-left mb-6">
+                <h3 class="text-xl font-bold">Hindushree H V</h3>
+                <p class="text-sm font-light">Passionate about building efficient and interactive applications.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-3">QUICK LINKS</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#about" class="hover:text-gray-200 transition">About Me</a></li>
+                        <li><a href="#projects" class="hover:text-gray-200 transition">Projects</a></li>
+                        <li><a href="#contact" class="hover:text-gray-200 transition">Contact</a></li>
+                        <!-- Assuming the resume link would open the PDF or a hosted version -->
+                        <li><a href="Hindushree_Resume.pdf.pdf" target="_blank" class="hover:text-gray-200 transition">Resume (View PDF)</a></li>
+                    </ul>
+                </div>
+
+                <!-- Get In Touch -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-3">GET IN TOUCH</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>Email: hindushreehv46@gmail.com</li>
+                        <li>Phone: +91-6361702971</li>
+                        <li>Location: Bengaluru, India</li>
+                    </ul>
+                </div>
+
+                <!-- Follow Me -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-3">FOLLOW ME</h4>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <!-- LinkedIn (Using the alias 'Hindushree' from the resume for links) -->
+                        <a href="https://www.linkedin.com/in/Hindushree" target="_blank" class="w-8 h-8 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-pink-500 transition">
+                            <i data-lucide="linkedin" class="w-4 h-4"></i>
                         </a>
-                        <a href="https://github.com/Hindukh" target="_blank" class="text-white hover:text-gray-200 transition">
-                            <i data-lucide="github" class="w-6 h-6"></i>
+                        <!-- GitHub (Using the alias 'Hindukh' from the resume for links) -->
+                        <a href="https://github.com/Hindukh" target="_blank" class="w-8 h-8 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-pink-500 transition">
+                            <i data-lucide="github" class="w-4 h-4"></i>
                         </a>
-                        <a href="mailto:hindushreehv46@gmail.com" class="text-white hover:text-gray-200 transition">
-                            <i data-lucide="mail" class="w-6 h-6"></i>
+                        <!-- Mail -->
+                        <a href="mailto:hindushreehv46@gmail.com" class="w-8 h-8 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-pink-500 transition">
+                            <i data-lucide="mail" class="w-4 h-4"></i>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Copyright -->
-            <div class="mt-8 pt-4 border-t border-orange-600 text-center text-sm">
-                <p>Made with ❤️ by Hindushree H V</p>
-                <p class="mt-1">"Dream big, work hard, stay focused."</p>
-                <p>&copy; 2025 All rights reserved.</p>
+            <!-- Copyright and Motto -->
+            <div class="mt-8 pt-4 border-t border-white border-opacity-30 text-center text-sm">
+                <p class="italic mb-2">"Dream big, work hard, stay focused."</p>
+                <p>&copy; 2025 Hindushree H V. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
-    <!-- JavaScript for Mobile Menu and Icon Rendering -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize Lucide icons
-            lucide.createIcons();
-
-            // Mobile menu functionality
-            const menuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            menuBtn.addEventListener('click', () => {
-                const isHidden = mobileMenu.classList.toggle('hidden');
-                menuBtn.querySelector('svg').setAttribute('data-lucide', isHidden ? 'menu' : 'x');
-                lucide.createIcons(); // Re-render icons after change
-            });
-
-            // Close mobile menu on link click
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    menuBtn.querySelector('svg').setAttribute('data-lucide', 'menu');
-                    lucide.createIcons();
-                });
-            });
-            
-            // --- Custom JavaScript for Horizontal Scroll ---
-            const certsContainer = document.getElementById('certs-container');
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-
-            certsContainer.addEventListener('mousedown', (e) => {
-                isDown = true;
-                certsContainer.classList.add('active-scroll');
-                startX = e.pageX - certsContainer.offsetLeft;
-                scrollLeft = certsContainer.scrollLeft;
-            });
-
-            certsContainer.addEventListener('mouseleave', () => {
-                isDown = false;
-                certsContainer.classList.remove('active-scroll');
-            });
-
-            certsContainer.addEventListener('mouseup', () => {
-                isDown = false;
-                certsContainer.classList.remove('active-scroll');
-            });
-
-            certsContainer.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - certsContainer.offsetLeft;
-                const walk = (x - startX) * 2; // Scroll-speed multiplier
-                certsContainer.scrollLeft = scrollLeft - walk;
-            });
-            // --- End Custom JavaScript for Horizontal Scroll ---
-        });
-    </script>
 
 </body>
 </html>
