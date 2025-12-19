@@ -3,661 +3,638 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hindushree H V | Portfolio</title>
+    <title>Hindushree H V | Full Stack Developer</title>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Lucide Icons for aesthetic vectors -->
-    <script type="module">
-        import { createIcons, AtSign, Briefcase, Code, BookOpen, Send, Github, Linkedin, Mail, Brain, X } from 'https://cdn.jsdelivr.net/npm/lucide-esm@latest';
-        createIcons({ icons: { AtSign, Briefcase, Code, BookOpen, Send, Github, Linkedin, Mail, Brain, X } });
-    </script>
     <style>
-        /* Custom gradient for the header and footer, matching the example's aesthetic */
-        .gradient-bg {
-            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Example gradient matching the image */
-        }
-        /* Style for the skill tags */
-        .skill-tag {
-            background-color: #fce7f3; /* Light pink background */
-            color: #9d174d; /* Darker pink text */
-            padding: 0.5rem 1rem;
-            border-radius: 9999px; /* Fully rounded */
-            font-weight: 500;
-            transition: transform 0.2s;
-            cursor: default;
-        }
-        .skill-tag:hover {
-            transform: scale(1.05);
-        }
-        /* Custom style for section title underline */
-        .section-underline {
-            width: 50px;
-            height: 3px;
-            background-color: #ff7e5f;
-            margin: 0.5rem 0 2rem 0; /* Left alignment */
-        }
-        /* Style for project and certificate cards */
-        .card {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        html {
-            scroll-behavior: smooth;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        /* --- Global Light Mode Styles --- */
+        
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #fcfcfc; /* Very light background */
+            color: #333333; /* Dark text */
+            scroll-behavior: smooth;
         }
 
-        /* CSS for the floating animation */
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        /* Define the custom orange/red gradient based on the reference images */
+        .primary-gradient {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FFA07A 100%);
         }
-        .animate-float {
-            animation: floating 3s ease-in-out infinite;
+        .text-primary {
+            color: #FF6B6B; /* Always red/orange */
         }
-        /* Styling for the hidden modal backdrop */
-        .modal-backdrop {
-            background-color: rgba(0, 0, 0, 0.7);
-            transition: opacity 0.3s ease;
-            z-index: 1000;
+        .skill-tag {
+            background-color: #fdd2c5;
+            color: #d64d4d;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px; 
+            transition: transform 0.2s, background-color 0.3s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
         }
-        .modal-content {
-            transform: translateY(-50px);
-            transition: transform 0.3s ease, opacity 0.3s ease;
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
         }
-        .modal-active .modal-content {
-            transform: translateY(0);
+        .section-heading-custom {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: #333; /* Explicitly dark */
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
-        /* Section title alignment for consistency */
-        .section-title-wrapper {
-            text-align: left; /* Ensure the wrapper aligns children to the left */
+        .section-heading-custom::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: #FF6B6B;
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
         }
-
+        /* Styling for the Project card buttons */
+        .btn-code {
+            background-color: #ffffff; /* Light background */
+            color: #333333; /* Dark text */
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #eee;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.2s, transform 0.2s;
+        }
+        .btn-code:hover {
+            background-color: #eee;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        /* Card Styling */
+        .project-card, .scroll-card-item {
+            background-color: #ffffff;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .profile-picture {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        /* Custom styles for the horizontal sliding/scrolling section */
+        .scroll-container {
+            width: 100%;
+            overflow-x: scroll; /* Enables horizontal scrolling */
+            -webkit-overflow-scrolling: touch; /* Improves scrolling on iOS */
+            padding-bottom: 1rem; /* Space for the scrollbar */
+            scroll-snap-type: x mandatory; /* Enables smooth snapping */
+        }
+        .scroll-cards {
+            display: flex;
+            flex-wrap: nowrap; /* Forces horizontal layout */
+            gap: 1.5rem;
+            padding: 0 0.5rem; /* Small internal padding for edges */
+        }
+        .scroll-card-item {
+            flex: 0 0 auto; /* Ensures cards maintain their size */
+            width: 300px; /* Fixed width for the card item */
+            min-height: 400px; /* Ensure visual consistency */
+            border: 1px solid #10b981; 
+            border-radius: 1rem;
+            padding: 1rem;
+            scroll-snap-align: center; /* Snaps the center of the card to the scroll position */
+        }
+        .cert-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="text-gray-800">
 
-    <!-- 1. HEADER / NAVIGATION BAR -->
-    <header id="home" class="sticky top-0 z-50 shadow-md">
-        <nav class="gradient-bg text-white p-4">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-                
-                <!-- Logo/Name Area -->
-                <div class="text-center md:text-left mb-3 md:mb-0">
-                    <h1 class="text-2xl font-bold tracking-wide">Hindushree H V</h1>
-                    <p class="text-sm font-light">Computer Science Student / Aspiring Full Stack & AI/ML Developer</p>
-                </div>
-
-                <!-- Navigation Links -->
-                <div class="flex flex-wrap justify-center space-x-4 sm:space-x-8">
-                    <a href="#about" class="flex items-center hover:text-gray-200 transition duration-150">
-                        <i data-lucide="at-sign" class="w-4 h-4 mr-1"></i> About
-                    </a>
-                    <a href="#projects" class="flex items-center hover:text-gray-200 transition duration-150">
-                        <i data-lucide="briefcase" class="w-4 h-4 mr-1"></i> Projects
-                    </a>
-                    <a href="#certificates" class="flex items-center hover:text-gray-200 transition duration-150">
-                        <i data-lucide="book-open" class="w-4 h-4 mr-1"></i> Certificates
-                    </a>
-                    <a href="#contact" class="flex items-center hover:text-gray-200 transition duration-150">
-                        <i data-lucide="send" class="w-4 h-4 mr-1"></i> Contact
-                    </a>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-
-        <!-- 2. HOME SCREEN / ABOUT ME SECTION (LEFT ALIGNED) -->
-        <section id="about" class="py-16">
-            <!-- Title Wrapper to enforce left alignment -->
-            <div class="section-title-wrapper">
-                <h2 class="text-4xl font-extrabold mb-2 text-gray-900">ABOUT ME</h2>
-                <div class="section-underline"></div>
+    <!-- Header & Navigation (Fixed top bar with orange background) -->
+    <header class="sticky top-0 z-50 primary-gradient shadow-xl">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+            <div class="flex flex-col leading-tight">
+                <a href="#home" class="text-xl font-extrabold text-white tracking-wider">Chethana SN</a>
+                <span class="text-sm font-light text-white opacity-90">Full Stack Web Developer</span>
             </div>
             
-            <!-- FLEX CONTAINER: Image on Left (1/3), Text on Right (2/3) -->
-            <div class="flex flex-col lg:flex-row items-center lg:space-x-12">
+            <!-- Desktop Navigation Links -->
+            <div class="hidden sm:flex space-x-6 items-center">
+                <!-- Resume Link -->
+                <a href="https://raw.githubusercontent.com/Chethanasn/portfolio/main/Resume.jpg" target="_blank" class="text-white hover:text-gray-200 transition duration-150 font-medium flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    Resume
+                </a>
+                <a href="#about" class="text-white hover:text-gray-200 transition duration-150 font-medium flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                    About
+                </a>
+                <a href="#projects" class="text-white hover:text-gray-200 transition duration-150 font-medium flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10l-4-4m4 4l4-4m4-4v10m0-10l4 4m-4-4l-4 4"></path></svg>
+                    Projects
+                </a>
                 
-                <!-- Profile Image (LEFT SIDE) -->
-                <div class="lg:w-1/3 mt-8 lg:mt-0 flex justify-center lg:justify-start order-1 lg:order-1">
-                    <div class="w-64 h-64 bg-gray-300 rounded-full overflow-hidden shadow-xl border-4 border-pink-400 p-1 animate-float">
+                <a href="#contact" class="text-white hover:text-gray-200 transition duration-150 font-medium flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-17 4v7a2 2 0 002 2h12a2 2 0 002-2v-7"></path></svg>
+                    Contact
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Button (Hamburger) -->
+            <div class="flex items-center">
+                <button id="mobile-menu-button" class="sm:hidden p-2 rounded-md text-white hover:bg-white hover:text-gray-800 transition duration-150" aria-label="Toggle Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu (Hidden by default) - White background for contrast -->
+        <div id="mobile-menu" class="sm:hidden hidden bg-white border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#about" class="block text-gray-800 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">ABOUT</a>
+                <a href="#skills" class="block text-gray-800 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">SKILLS</a>
+                <a href="#projects" class="block text-gray-800 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">PROJECTS</a>
+                <a href="#contact" class="block text-gray-800 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">CONTACT</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Home/About Section -->
+        <section id="home" class="py-10"> <!-- Minimal spacing after sticky header -->
+            <h2 class="section-heading-custom text-primary">ABOUT ME</h2>
+            
+            <div id="about" class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+                
+                <!-- Left Column (Text) -->
+                <div class="md:col-span-2 text-lg text-gray-700 space-y-4">
+                    <p>Hello, I'm <strong class="text-black font-extrabold">Chethana SN</strong>, a passionate Computer Application graduate with a keen eye for detail and a love for creating seamless user experiences.</p>
+                    <p>I specialize in Web Full Stack Development and Data Science, utilizing skills in Python, HTML, CSS, and JavaScript to build secure, scalable applications.</p>
+                    <p>My goal is to craft efficient, beautiful, and interactive applications that solve real-world problems through clean and well-structured code. I'm actively expanding my knowledge in new tools and frameworks in the development ecosystem.</p>
+                    
+                    <!-- Buttons removed -->
+                </div>
+
+                <!-- Right Column (Profile Image Placeholder) -->
+                <div class="md:col-span-1 flex justify-center">
+                    <div class="w-64 h-64 rounded-full primary-gradient p-1 shadow-2xl">
+                        <!-- UPDATED: Inserting your profile picture URL -->
                         <img 
-                            src="https://raw.githubusercontent.com/Hindushree56/portfolio/main/Picture.jpg" 
-                            alt="Professional Profile Picture of Hindushree H V" 
-                            class="w-full h-full object-cover rounded-full"
-                            onerror="console.error('Profile image failed to load from GitHub. Falling back to placeholder.'); this.onerror=null; this.src='https://placehold.co/250x250/FCAE9D/FFFFFF?text=HINDUSHREE+H+V';"
+                            src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/Chethu.jpg" 
+                            alt="Chethana SN Profile Picture" 
+                            class="profile-picture"
+                            onerror="this.onerror=null; this.src='https://placehold.co/250x250/fff/ccc?text=Photo';" 
                         >
                     </div>
                 </div>
-
-                <!-- About Text (RIGHT SIDE) -->
-                <div class="lg:w-2/3 text-lg space-y-4 text-left order-2 lg:order-2 mt-8 lg:mt-0">
-                    <p>
-                        Hello, I'm **Hindushree H V**, a passionate Computer Science student from Bengaluru. I possess a **strong technical foundation** and hands-on experience in both **Full Stack Development and Machine Learning**. I have a keen eye for detail and a drive for creating secure, scalable, and highly interactive applications.
-                    </p>
-                    <p>
-                        I am currently pursuing my **Master of Computer Application (MCA)** at NMAM Institute of Technology, Nitte, following a **Bachelor of Computer Application (BCA)** from KLE Society's S Nijalingappa College.
-                    </p>
-                    <p>
-                        I am proficient in core technologies like **Python, React.js, Node.js, and Flask**, and I actively focus on bridging the gap between robust backend systems and intuitive user interfaces. I am actively seeking challenging roles in **Software Development or AI/ML-driven systems** where I can apply my diverse skillset.
-                    </p>
-                </div>
-
             </div>
         </section>
 
-        <!-- 3. TECHNOLOGIES & TOOLS SECTION -->
-        <section id="technologies" class="text-center py-16 bg-white rounded-xl">
-            <h2 class="text-4xl font-extrabold mb-2 text-gray-900">TECHNOLOGIES & TOOLS I WORK WITH</h2>
-            <div class="section-underline mx-auto"></div>
+        <!-- Technical Skills Section (Mimicking the tag cloud style from image_af9b54.png) -->
+        <section id="skills" class="py-16 border-t border-gray-100">
+            <h2 class="section-heading-custom text-primary">Technologies & Tools I Work With</h2>
             
-            <div class="flex flex-wrap justify-center gap-3 sm:gap-4 p-4">
-                <!-- Programming -->
-                <span class="skill-tag">C / C++</span>
+            <div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+                <!-- Programming & Data Structures -->
                 <span class="skill-tag">Python</span>
+                <span class="skill-tag">C / C++</span>
                 <span class="skill-tag">Data Structures & Algorithms</span>
 
-                <!-- Web Development -->
+                <!-- Web Development & Full Stack -->
                 <span class="skill-tag">HTML</span>
                 <span class="skill-tag">CSS</span>
                 <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">React.js</span>
-                <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">Flask (for Web Apps)</span>
-                <span class="skill-tag">PHP (from Attendance Project)</span>
-                <span class="skill-tag">Bootstrap 5 / Responsive Design</span>
-                <span class="skill-tag">AngularJS / jQuery (from Event Management Project)</span>
-
-                <!-- AI / ML -->
-                <span class="skill-tag">Scikit-learn</span>
-                <span class="skill-tag">Matplotlib & Seaborn</span>
-                <span class="skill-tag">TensorFlow / Keras</span>
-                <span class="skill-tag">MediaPipe / OpenCV</span>
+                <span class="skill-tag">PHP</span>
+                <span class="skill-tag">Responsive Design</span>
+                <!-- Updated Skills based on projects -->
+                <span class="skill-tag">TensorFlow</span>
                 <span class="skill-tag">Streamlit</span>
-                <span class="skill-tag">NumPy / Pandas</span>
 
-                <!-- Databases & Tools -->
+
+                <!-- Database & Tools -->
                 <span class="skill-tag">MySQL / SQL</span>
                 <span class="skill-tag">Oracle</span>
-                <span class="skill-tag">MongoDB</span>
                 <span class="skill-tag">Git & GitHub</span>
                 <span class="skill-tag">VS Code / Eclipse</span>
+                
+                <!-- Mobile & Architecture (from Document Tracking Project) -->
+                <span class="skill-tag">Android</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">Firebase</span>
+                <span class="skill-tag">XML</span>
             </div>
         </section>
 
-        <!-- 4. PROJECTS SECTION -->
-        <section id="projects" class="py-16">
-            <h2 class="text-4xl font-extrabold text-center mb-2 text-gray-900">PROJECTS</h2>
-            <div class="section-underline mx-auto"></div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <!-- Project 1: AI-based Stress Detection -->
-                <div class="card bg-white p-6 rounded-lg flex flex-col justify-between">
-                    <div>
-                        <!-- Placeholder Image/Icon (matching the example style) -->
-                        <div class="h-40 bg-pink-100 mb-4 rounded-lg flex items-center justify-center">
-                            <i data-lucide="briefcase" class="w-12 h-12 text-pink-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-1">AI-Based Stress Detection & Prediction</h3>
-                        <p class="text-sm font-semibold text-pink-600 mb-3">Full Stack + AIML - May 2024 - June 2024</p>
-                        <p class="text-gray-600 text-sm project-desc">
-                            Developed an AI-based stress detection model using physiological signals (EDA, HR), employing advanced data preprocessing and training **ML algorithms (SVM, Random Forest, CNN)**.
-                        </p>
-                        <p class="text-gray-600 text-sm mt-2 project-desc">
-                            Built a **Flask-based web application** providing real-time stress predictions, live-updating graphs, and automatic user input logging for interactive monitoring.
-                        </p>
-                    </div>
-                    <p class="mt-4 text-xs font-medium text-gray-500">Tech Stack: Python, Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn, Flask</p>
-                    <!-- LLM Feature 1 Button -->
-                    <div class="flex space-x-2 mt-4">
-                        <a href="https://github.com/Hindukh" target="_blank" class="w-1/2 inline-block text-center view-code-btn border border-gray-300 rounded-lg py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition">View Code</a>
-                        <button onclick="summarizeProject(this)" class="w-1/2 flex items-center justify-center px-3 py-2 text-sm font-medium rounded-lg text-white gradient-bg hover:shadow-md transition duration-200">
-                            ✨ Explain Simply
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Project 2: Sign Language Translator -->
-                <div class="card bg-white p-6 rounded-lg flex flex-col justify-between">
-                    <div>
-                        <!-- Placeholder Image/Icon (matching the example style) -->
-                        <div class="h-40 bg-purple-100 mb-4 rounded-lg flex items-center justify-center">
-                            <i data-lucide="code" class="w-12 h-12 text-purple-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-1">Sign Language Translator (A-Z)</h3>
-                        <p class="text-sm font-semibold text-purple-600 mb-3">Machine Learning + Computer Vision</p>
-                        <p class="text-gray-600 text-sm project-desc">
-                            Developed a **real-time Sign Language Translator** using **CNN, MediaPipe, and OpenCV** to recognize ASL hand gestures (A-Z) and convert them into text and speech.
-                        </p>
-                        <p class="text-gray-600 text-sm mt-2 project-desc">
-                            Built a complete ML pipeline including dataset preparation, model training, evaluation, and real-time deployment with high prediction accuracy.
-                        </p>
-                    </div>
-                    <p class="mt-4 text-xs font-medium text-gray-500">Tech Stack: Python, TensorFlow, Keras, MediaPipe, OpenCV, NumPy, Streamlit</p>
-                    <!-- LLM Feature 1 Button -->
-                    <div class="flex space-x-2 mt-4">
-                        <a href="https://github.com/Hindukh" target="_blank" class="w-1/2 inline-block text-center view-code-btn border border-gray-300 rounded-lg py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition">View Code</a>
-                        <button onclick="summarizeProject(this)" class="w-1/2 flex items-center justify-center px-3 py-2 text-sm font-medium rounded-lg text-white gradient-bg hover:shadow-md transition duration-200">
-                            ✨ Explain Simply
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Project 3: Attendance System -->
-                <div class="card bg-white p-6 rounded-lg flex flex-col justify-between">
-                    <div>
-                        <!-- Placeholder Image/Icon (matching the example style) -->
-                        <div class="h-40 bg-green-100 mb-4 rounded-lg flex items-center justify-center">
-                            <i data-lucide="book-open" class="w-12 h-12 text-green-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-1">Student Attendance Management System</h3>
-                        <p class="text-sm font-semibold text-green-600 mb-3">Full Stack / Web Development - Mar 2025 - Apr 2025</p>
-                        <p class="text-gray-600 text-sm project-desc">
-                            Developed a secure, web-based system using **PHP and MySQL** to efficiently manage student data, mark attendance, and generate automated reports for educational institutions.
-                        </p>
-                        <p class="text-gray-600 text-sm mt-2 project-desc">
-                            The system ensures high data accuracy, features a user-friendly interface, and is easily deployed using XAMPP.
-                        </p>
-                    </div>
-                    <p class="mt-4 text-xs font-medium text-gray-500">Tech Stack: PHP, MySQL, HTML, CSS, JavaScript, XAMPP</p>
-                    <!-- LLM Feature 1 Button -->
-                    <div class="flex space-x-2 mt-4">
-                        <a href="https://github.com/Hindukh" target="_blank" class="w-1/2 inline-block text-center view-code-btn border border-gray-300 rounded-lg py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition">View Code</a>
-                        <button onclick="summarizeProject(this)" class="w-1/2 flex items-center justify-center px-3 py-2 text-sm font-medium rounded-lg text-white gradient-bg hover:shadow-md transition duration-200">
-                            ✨ Explain Simply
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Project 4: Event Management -->
-                <div class="card bg-white p-6 rounded-lg flex flex-col justify-between">
-                    <div>
-                        <!-- Placeholder Image/Icon (matching the example style) -->
-                        <div class="h-40 bg-yellow-100 mb-4 rounded-lg flex items-center justify-center">
-                            <i data-lucide="send" class="w-12 h-12 text-yellow-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-1">Responsive Event Management Web App</h3>
-                        <p class="text-sm font-semibold text-yellow-600 mb-3">Full Stack Web Development - Jul 2025 - Aug 2025</p>
-                        <p class="text-gray-600 text-sm project-desc">
-                            Developed a comprehensive, responsive event management application featuring user login, event creation/editing, search functionality, image uploads, and CSV data export.
-                        </p>
-                        <p class="text-gray-600 text-sm mt-2 project-desc">
-                            Implemented dynamic features like light/dark mode UI using **Bootstrap** and leveraged **AngularJS and jQuery** for a clean, professional design and dynamic interaction.
-                        </p>
-                    </div>
-                    <p class="mt-4 text-xs font-medium text-gray-500">Tech Stack: HTML5, CSS3, Bootstrap 5, AngularJS, jQuery, JavaScript</p>
-                    <!-- LLM Feature 1 Button -->
-                    <div class="flex space-x-2 mt-4">
-                        <a href="https://github.com/Hindukh" target="_blank" class="w-1/2 inline-block text-center view-code-btn border border-gray-300 rounded-lg py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition">View Code</a>
-                        <button onclick="summarizeProject(this)" class="w-1/2 flex items-center justify-center px-3 py-2 text-sm font-medium rounded-lg text-white gradient-bg hover:shadow-md transition duration-200">
-                            ✨ Explain Simply
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. CERTIFICATES SECTION -->
-        <section id="certificates" class="py-16 bg-white rounded-xl">
-            <h2 class="text-4xl font-extrabold text-center mb-2 text-gray-900">COURSES & CERTIFICATIONS</h2>
-            <div class="section-underline mx-auto"></div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Certificate 1: Prompt Engineering for ChatGPT -->
-                <div class="card p-6 rounded-lg border border-gray-200">
-                    <div class="h-40 bg-gray-100 mb-4 rounded-lg flex items-center justify-center text-center p-4">
-                        <img src="https://placehold.co/200x150/f0f0f0/888?text=Prompt+Engineering" alt="Certificate Placeholder" class="max-h-full max-w-full rounded-md object-contain">
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-1">Prompt Engineering for ChatGPT</h3>
-                    <p class="text-sm font-semibold text-pink-600 mb-3">GreatLearning</p>
-                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
-                        <li>**Key Focus:** Designing and refining effective prompts for LLMs.</li>
-                        <li>Maximizing output quality and utilizing AI tools efficiently.</li>
-                    </ul>
-                </div>
-                
-                <!-- Certificate 2: Full Stack Development -->
-                <div class="card p-6 rounded-lg border border-gray-200">
-                    <div class="h-40 bg-gray-100 mb-4 rounded-lg flex items-center justify-center text-center p-4">
-                        <img src="https://placehold.co/200x150/f0f0f0/888?text=Meta+Full+Stack" alt="Certificate Placeholder" class="max-h-full max-w-full rounded-md object-contain">
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-1">Full Stack Development</h3>
-                    <p class="text-sm font-semibold text-pink-600 mb-3">Coursera (Meta)</p>
-                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
-                        <li>**Key Focus:** Comprehensive training on MERN/Meta's full-stack applications.</li>
-                        <li>Covering frontend technologies (React) and backend development.</li>
-                    </ul>
-                </div>
-
-                <!-- Certificate 3: Introduction to MongoDB -->
-                <div class="card p-6 rounded-lg border border-gray-200">
-                    <div class="h-40 bg-gray-100 mb-4 rounded-lg flex items-center justify-center text-center p-4">
-                        <img src="https://placehold.co/200x150/f0f0f0/888?text=MongoDB+Intro" alt="Certificate Placeholder" class="max-h-full max-w-full rounded-md object-contain">
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-1">Introduction to MongoDB</h3>
-                    <p class="text-sm font-semibold text-pink-600 mb-3">Coursera</p>
-                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
-                        <li>**Key Focus:** NoSQL database modeling and querying.</li>
-                        <li>Understanding document structures and best practices for MongoDB development.</li>
-                    </ul>
-                </div>
-                
-                <!-- Certificate 4: Microsoft Azure, AI and Applied AI Learning Challenges -->
-                <div class="card p-6 rounded-lg border border-gray-200">
-                    <div class="h-40 bg-gray-100 mb-4 rounded-lg flex items-center justify-center text-center p-4">
-                        <img src="https://placehold.co/200x150/f0f0f0/888?text=Azure+AI" alt="Certificate Placeholder" class="max-h-full max-w-full rounded-md object-contain">
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-1">Microsoft Azure, AI and Applied AI</h3>
-                    <p class="text-sm font-semibold text-pink-600 mb-3">Microsoft/Various Challenges</p>
-                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
-                        <li>**Key Focus:** Cloud computing concepts, AI services deployment on Azure.</li>
-                        <li>Applied AI principles and solutions.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. CONTACT ME SECTION -->
-        <section id="contact" class="py-16">
-            <h2 class="text-4xl font-extrabold text-center mb-2 text-gray-900">CONTACT ME</h2>
-            <div class="section-underline mx-auto"></div>
+        <!-- Projects Section (Mimicking the card layout from image_af9afb.jpg) -->
+        <section id="projects" class="py-16 border-t border-gray-100">
+            <h2 class="section-heading-custom text-primary">PROJECTS</h2>
             
-            <div class="flex flex-col lg:flex-row bg-white p-8 rounded-xl shadow-lg">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <!-- Image Area -->
-                <div class="lg:w-1/2 flex items-center justify-center p-4 hidden md:flex">
-                    <!-- Placeholder Image (Replace with a custom SVG or illustration if desired) -->
-                    <img 
-                        src="https://placehold.co/400x400/FCAE9D/FFFFFF?text=Let's+Connect" 
-                        alt="Illustration of a person sending messages" 
-                        class="w-full max-w-md h-auto object-contain rounded-lg"
-                    >
+                <!-- Project 1: Vet Ventures -->
+                <div class="project-card bg-white p-6 rounded-xl shadow-lg border-b-4 border-gray-100 hover:shadow-2xl transition duration-500 flex flex-col justify-between">
+                    <div>
+                        <!-- Project Image: Vet Ventures -->
+                        <img 
+                            src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/vet%20ventures.jpg" 
+                            alt="Vet Ventures Web App Screenshot" 
+                            class="project-preview"
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x150/999/fff?text=No+Image+Found';"
+                        >
+                        
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Vet Ventures</h4>
+                        <p class="text-sm font-medium text-primary mb-3">Full Stack Developer | May 2024 - June 2024</p>
+                        <p class="text-gray-700 mb-4 text-sm">Developed a web application that digitizes veterinary clinic workflows The project offers features for appointment booking,patient management, and veterinary record keeping.
+Demonstratedexpertisein full-stackdevelopment, user experience design, and healthcare software solutions.</p>
+                        <p class="text-xs font-semibold text-gray-500 mb-4">Tech Stack: MySQL, HTML, CSS, JavaScript , PHP</p>
+                    </div>
+                    <div class="flex justify-center mt-4"> 
+                        <a href="https://github.com/Chethanasn/Vet-ventures" target="_blank" class="btn-code w-full text-center">View Code</a>
+                    </div>
                 </div>
 
-                <!-- Contact Form and AI Prep Tool -->
-                <div class="lg:w-1/2 p-4">
+                <!-- Project 2: Animae Enigma -->
+                <div class="project-card bg-white p-6 rounded-xl shadow-lg border-b-4 border-gray-100 hover:shadow-2xl transition duration-500 flex flex-col justify-between">
+                    <div>
+                        <!-- Project Image: Animae Enigma -->
+                        <img 
+                            src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/animae_enigma.jpg" 
+                            alt="Animae Enigma App Screenshot" 
+                            class="project-preview"
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x150/999/fff?text=No+Image';"
+                        >
 
-                    <!-- LLM Feature 2: AI Career Prep Tool -->
-                    <div id="ai-prep-tool" class="bg-pink-50 p-6 rounded-lg mb-8 border border-pink-200">
-                        <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
-                            <i data-lucide="brain" class="w-6 h-6 mr-2 text-pink-600"></i> AI Career Prep ✨
-                        </h3>
-                        <p class="text-sm text-gray-600 mb-4">
-                            Enter a specific job role (e.g., 'Junior MLOps Engineer') to get the **must-have skills and keywords** to include in your resume for that role. Powered by Google Search grounding.
-                        </p>
-                        <input type="text" id="job-role-input" placeholder="e.g., Junior MLOps Engineer" class="mb-3 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 transition">
-                        <button type="button" onclick="generateKeywords()" id="keyword-button" class="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-pink-600 hover:bg-pink-700 transition duration-200">
-                            Generate Keywords & Skills
-                        </button>
-                        <div id="keyword-results" class="mt-4 p-4 bg-white rounded-lg border border-pink-100 hidden">
-                            <p class="font-semibold text-gray-800 mb-2">Relevant Keywords:</p>
-                            <div id="keyword-content" class="text-sm text-gray-700"></div>
-                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Animae Enigma</h4>
+                        <p class="text-sm font-medium text-primary mb-3">Gamified Recognition App | June 2025 - July 2025</p>
+                         <p class="text-gray-700 mb-4 text-sm">Developed an interactive web application that gamifies anime character recognition using deep learning and image processing. The app features multi-level gameplay, including blurred image guessing and tile-based puzzles.</p>
+                        <p class="text-xs font-semibold text-gray-500 mb-4">Tech Stack: Python, TensorFlow, Streamlit, HTML, CSS, JavaScript</p>
                     </div>
+                    <div class="flex justify-center mt-4"> 
+                        <a href="https://github.com/Chethanasn/animae-enigma." target="_blank" class="btn-code w-full text-center">View Code</a>
+                    </div>
+                </div>
+                
+                <!-- Project 3: Mind Sprint -->
+                <div class="project-card bg-white p-6 rounded-xl shadow-lg border-b-4 border-gray-100 hover:shadow-2xl transition duration-500 flex flex-col justify-between">
+                    <div>
+                        <!-- Project Image: Mind Sprint -->
+                        <img 
+                            src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/mind_sprint.jpg" 
+                            alt="Mind Sprint Web Platform Screenshot" 
+                            class="project-preview"
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x150/999/fff?text=No+Image';"
+                        >
 
-                    <!-- Traditional Contact Form -->
-                    <h3 class="text-xl font-bold text-gray-900 mb-4 text-center lg:text-left">Send Me a Message</h3>
-                    <form class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name:</label>
-                            <input type="text" id="name" name="name" placeholder="Enter your name" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 transition">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email:</label>
-                            <input type="email" id="email" name="email" placeholder="Enter your email" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 transition">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message:</label>
-                            <textarea id="message-text" name="message" rows="5" placeholder="Your message" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 transition"></textarea>
-                        </div>
-                        <button type="submit" class="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white gradient-bg hover:shadow-lg transition duration-200">
-                            Send <i data-lucide="send" class="w-4 h-4 ml-2"></i>
-                        </button>
-                    </form>
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Mind Sprint</h4>
+                        <p class="text-sm font-medium text-primary mb-3">Front-End Developer | Aug 2024 - Oct 2024</p>
+                        <p class="text-gray-700 mb-4 text-sm">Mind Sprint is an innovative educational platform where students can learn through video lessons, access PDF study materials, and get instant support from an integrated AI chatbot. With a simple and intuitive interface, it helps learners study anytime, anywhere with ease.</p>
+                        <p class="text-xs font-semibold text-gray-500 mb-4">Tech Stack: HTML, CSS, JavaScript, PHP, MySQL</p>
+                    </div>
+                    <div class="flex justify-center mt-4"> 
+                        <a href="https://github.com/Chethanasn/Mind_Sprint" target="_blank" class="btn-code w-full text-center">View Code</a>
+                    </div>
+                </div>
+
+                <!-- Project 4: Document Tracking System -->
+                <div class="project-card bg-white p-6 rounded-xl shadow-lg border-b-4 border-gray-100 hover:shadow-2xl transition duration-500 flex flex-col justify-between">
+                    <div>
+                        <!-- Project Image: Document Tracking System -->
+                        <img 
+                            src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/DTS.jpg" 
+                            alt="DTS Project" 
+                            class="project-preview"
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x150/999/fff?text=No+Image';"
+                        >
+
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Document Tracking System (Android)</h4>
+                        <p class="text-sm font-medium text-primary mb-3">Mobile Application | Sep 2025 - Oct 2025</p>
+                        <p class="text-gray-700 mb-4 text-sm">This Android-based Document Tracking System allows users to securely store, manage, and monitor documents within an
+organization
+It enables efficient tracking, quick retrieval, and real-time status updates, ensuring smooth workflow and improved document
+management efficiency.</p>
+                        <p class="text-xs font-semibold text-gray-500 mb-4">Tech Stack: Android, Gradle, Firebase, Java, MVVM Architecture</p>
+                    </div>
+                    <div class="flex justify-center mt-4"> 
+                        <a href="https://github.com/Chethanasn/Document_Tracking_System" target="_blank" class="btn-code w-full text-center">View Code</a>
+                    </div>
+                </div>
+
+                <!-- Project 5: SweetShop Management System -->
+                <div class="project-card bg-white p-6 rounded-xl shadow-lg border-b-4 border-gray-100 hover:shadow-2xl transition duration-500 flex flex-col justify-between">
+                    <div>
+                        <!-- Project Image: SweetShop Management System -->
+                        <img 
+                            src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/sweet_shop.jpg" 
+                            alt="Sweet Shop Project" 
+                            class="project-preview"
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x150/999/fff?text=No+Image';"
+                        >
+
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">SweetShop Management</h4>
+                        <p class="text-sm font-medium text-primary mb-3">Full Stack Developer | November 2025</p>
+                        <p class="text-gray-700 mb-4 text-sm">web application designed to simplify and automate the process of managing a sweet shop’s inventory and sales. The system provides role-based dashboards for Admin and User, enabling efficient sweet management and secure user
+authentication.</p>
+                        <p class="text-xs font-semibold text-gray-500 mb-4">Tech Stack: HTML, CSS, JavaScript, React , TypeScript , Node.js</p>
+                    </div>
+                    <div class="flex justify-center mt-4"> 
+                        <a href="https://github.com/Chethanasn/Sweet_Shop_Management_System" target="_blank" class="btn-code w-full text-center">View Code</a>
+                    </div>
                 </div>
             </div>
         </section>
         
-    </main>
+        <!-- Courses and Certifications Section (Horizontally Scrolling Layout) -->
+        <section id="education" class="py-16 border-t border-gray-100">
+            <h2 class="section-heading-custom text-primary">CERTIFICATES</h2>
 
-    <!-- Modal for LLM Results -->
-    <div id="llm-modal" class="modal-backdrop fixed inset-0 flex items-center justify-center opacity-0 pointer-events-none" onclick="closeModal()">
-        <div class="modal-content bg-white p-6 rounded-xl shadow-2xl w-full max-w-lg mx-4" onclick="event.stopPropagation()">
-            <div class="flex justify-between items-center mb-4">
-                <h3 id="modal-title" class="text-xl font-bold text-gray-900">Result</h3>
-                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
-            </div>
-            <div id="modal-body" class="prose max-w-none text-gray-700">
-                <!-- Content will be injected here -->
-            </div>
-        </div>
-    </div>
+            <!-- Outer container for horizontal scrolling -->
+            <div class="scroll-container">
+                <div class="scroll-cards">
+                    
+                    <!-- Card 3: Microsoft FullStack Developer Certification -->
+                    <div class="scroll-card-item p-6 rounded-xl shadow-lg">
+                        <div class="pb-4 mb-2">
+                            <img src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/Certificate5.jpg" alt="Microsoft FullStack Developer Certificate" class="cert-image" onerror="this.onerror=null; this.src='https://placehold.co/100x120/d1e7c5/10b981?text=Cert%5C1Image';">
+                            <h4 class="text-lg font-bold text-gray-900">Microsoft FullStack Developer</h4>
+                            <p class="text-primary font-medium text-sm">Coursera</p>
+                        </div>
+                        <div class="pt-2">
+                            <h5 class="font-semibold mb-1 text-sm">What I Learned:</h5>
+                            <ul class="list-disc pl-4 space-y-1 text-sm text-gray-700">
+                                <li>Comprehensive Full-Stack MERN stack concepts.</li>
+                                <li>Building scalable web applications.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 4: Data Analytics Certification -->
+                     <div class="scroll-card-item p-6 rounded-xl shadow-lg">
+                         <div class="pb-4 mb-2">
+                            <img src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/Certificate3.jpg" alt="Data Analytics Certificate" class="cert-image" onerror="this.onerror=null; this.src='https://placehold.co/100x120/f9f6e8/8d6e38?text=Cert%5C2Image';">
+                            <h4 class="text-lg font-bold text-gray-900">Data Analytics using ChatGPT with Excel and Python</h4>
+                            <p class="text-primary font-medium text-sm">GreatLearning</p>
+                        </div>
+                        <div class="pt-2">
+                            <h5 class="font-semibold mb-1 text-sm">Key Skills:</h5>
+                            <ul class="list-disc pl-4 space-y-1 text-sm text-gray-700">
+                                <li>Data manipulation and visualization using Python.</li>
+                                <li>Leveraging LLMs (ChatGPT) for analytical tasks.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 5: Advanced Styling Certification -->
+                     <div class="scroll-card-item p-6 rounded-xl shadow-lg">
+                         <div class="pb-4 mb-2">
+                            <img src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/Certificate1.jpg" alt="Advanced Styling Certificate" class="cert-image" onerror="this.onerror=null; this.src='https://placehold.co/100x120/c2d3ff/007bff?text=Cert%5C3Image';">
+                            <h4 class="text-lg font-bold text-gray-900">Advanced Styling with Responsive Design</h4>
+                            <p class="text-primary font-medium text-sm">University of Michigan (Coursera)</p>
+                        </div>
+                        <div class="pt-2">
+                            <h5 class="font-semibold mb-1 text-sm">Key Focus:</h5>
+                            <ul class="list-disc pl-4 space-y-1 text-sm text-gray-700">
+                                <li>CSS Flexbox and Grid mastery.</li>
+                                <li>Creating fluid, mobile-first web layouts.</li>
+                            </ul>
+                        </div>
+                    </div>
 
-    <!-- FOOTER -->
-    <footer class="gradient-bg text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center md:text-left mb-6">
-                <h3 class="text-xl font-bold">Hindushree H V</h3>
-                <p class="text-sm font-light">Passionate about building efficient and interactive applications.</p>
-            </div>
+                    <!-- Card 6: UI Design Certification -->
+                     <div class="scroll-card-item p-6 rounded-xl shadow-lg">
+                         <div class="pb-4 mb-2">
+                            <img src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/Certificate2.jpg" alt="Visual Elements of User Interface Design Certificate" class="cert-image" onerror="this.onerror=null; this.src='https://placehold.co/100x120/f9f6e8/8d6e38?text=Cert%5C4Image';">
+                            <h4 class="text-lg font-bold text-gray-900">Visual Elements of User Interface Design</h4>
+                            <p class="text-primary font-medium text-sm">Calarts (Coursera)</p>
+                        </div>
+                        <div class="pt-2">
+                            <h5 class="font-semibold mb-1 text-sm">Key Focus:</h5>
+                            <ul class="list-disc pl-4 space-y-1 text-sm text-gray-700">
+                                <li>Typography, color theory, and visual hierarchy.</li>
+                                <li>Principles of attractive and usable UI design.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 7: Prompt Engineering Certification -->
+                     <div class="scroll-card-item p-6 rounded-xl shadow-lg">
+                         <div class="pb-4 mb-2">
+                            <img src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/Certificate4.jpg" alt="Prompt Engineering Certificate" class="cert-image" onerror="this.onerror=null; this.src='https://placehold.co/100x120/d1e7c5/10b981?text=Cert%5C5Image';">
+                            <h4 class="text-lg font-bold text-gray-900">Prompt Engineering for ChatGPT</h4>
+                            <p class="text-primary font-medium text-sm">GreatLearning</p>
+                        </div>
+                        <div class="pt-2">
+                            <h5 class="font-semibold mb-1 text-sm">Key Focus:</h5>
+                            <ul class="list-disc pl-4 space-y-1 text-sm text-gray-700">
+                                <li>Designing effective prompts for LLMs.</li>
+                                <li>Maximizing utility from generative AI tools.</li>
+                            </ul>
+                        </div>
+                    </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                </div>
+            </div>
+            <!-- End Horizontal Scrolling Container -->
+
+        </section>
+
+        <!-- Contact Section (UPDATED TO FORM STRUCTURE) -->
+        <section id="contact" class="py-16 border-t border-gray-100">
+            <h2 class="section-heading-custom text-primary">CONTACT ME</h2>
+            
+            <div class="max-w-4xl mx-auto bg-gray-50 p-8 sm:p-12 rounded-xl shadow-xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-3">QUICK LINKS</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#about" class="hover:text-gray-200 transition">About Me</a></li>
-                        <li><a href="#projects" class="hover:text-gray-200 transition">Projects</a></li>
-                        <li><a href="#contact" class="hover:text-gray-200 transition">Contact</a></li>
-                        <!-- Assuming the resume link would open the PDF or a hosted version -->
-                        <li><a href="Hindushree_Resume.pdf.pdf" target="_blank" class="hover:text-gray-200 transition">Resume (View PDF)</a></li>
+                <!-- Left Column (Illustration) -->
+                <div class="flex justify-center items-center h-full hidden md:flex">
+                    <img 
+                        src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/1.jpg" 
+                        alt="Contact Illustration: Chethana on the phone" 
+                        class="contact-illustration rounded-xl shadow-lg"
+                        onerror="this.onerror=null; this.src='https://placehold.co/400x400/fff000/ffffff?text=Image+Load+Failed'; console.error('Image failed to load. Please ensure the URL is a direct link to the image file.');"
+                    >
+                </div>
+
+                <!-- Right Column (Contact Form) -->
+                <!-- Converted div to form for submission readiness -->
+                <form action="https://formspree.io/f/meoyrgyd" method="POST" class="space-y-4">
+                    <div class="space-y-2">
+                        <label for="name" class="font-medium text-gray-700">Name:</label>
+                        <!-- Added name attribute -->
+                        <input type="text" id="name" name="name" placeholder="Enter your name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-150" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="email" class="font-medium text-gray-700">Email:</label>
+                        <!-- Added name attribute -->
+                        <input type="email" id="email" name="_replyto" placeholder="Enter your email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-150" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="message" class="font-medium text-gray-700">Message:</label>
+                        <!-- Added name attribute -->
+                        <textarea id="message" name="message" rows="4" placeholder="Your message" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-150" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full primary-gradient text-white p-3 rounded-lg font-semibold shadow-lg hover:opacity-90 transition duration-300">
+                        Send <span class="ml-2">&#x27A4;</span>
+                    </button>
+                    
+                </form>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Footer (Matching reference image: image_93f2a1.jpg) -->
+    <footer class="primary-gradient text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+            
+            <!-- Top Section (Name and Summary) -->
+            <div class="space-y-1">
+                <h4 class="text-xl font-extrabold tracking-wide">Chethana SN</h4>
+                <p class="text-sm font-light opacity-90">Passionate about building efficient and interactive applications.</p>
+            </div>
+            
+            <!-- Three-Column Link/Contact Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left pt-6 border-t border-white border-opacity-20">
+                
+                <!-- Column 1: QUICK LINKS -->
+                <div class="space-y-2">
+                    <h5 class="text-lg font-semibold mb-3">QUICK LINKS</h5>
+                    <ul class="space-y-1 text-sm font-light">
+                        <li><a href="#about" class="hover:underline">About Me</a></li>
+                        <li><a href="#projects" class="hover:underline">Projects</a></li>
+                        <li><a href="#contact" class="hover:underline">Contact</a></li>
+                        <!-- Resume Link (UPDATED: Added Raw GitHub URL) -->
+                        <li><a href="https://raw.githubusercontent.com/Chethanasn/portfolio/main/Resume.jpg" target="_blank" class="hover:underline">Resume</a></li>
                     </ul>
                 </div>
 
-                <!-- Get In Touch -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-3">GET IN TOUCH</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li>Email: hindushreehv46@gmail.com</li>
-                        <li>Phone: +91-6361702971</li>
+                <!-- Column 2: GET IN TOUCH (Using user's info) -->
+                <div class="space-y-2">
+                    <h5 class="text-lg font-semibold mb-3">GET IN TOUCH</h5>
+                    <ul class="space-y-1 text-sm font-light">
+                        <li>Email: chethanasn2003@gmail.com</li>
+                        <li>Phone: +91-8660476005</li>
                         <li>Location: Bengaluru, India</li>
                     </ul>
                 </div>
-
-                <!-- Follow Me -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-3">FOLLOW ME</h4>
+                
+                <!-- Column 3: FOLLOW ME (RESTORING LINKEDIN) -->
+                <div class="space-y-2">
+                    <h5 class="text-lg font-semibold mb-3">FOLLOW ME</h5>
                     <div class="flex justify-center md:justify-start space-x-4">
-                        <!-- LinkedIn (Using the alias 'Hindushree' from the resume for links) -->
-                        <a href="https://www.linkedin.com/in/Hindushree" target="_blank" class="w-8 h-8 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-pink-500 transition">
-                            <i data-lucide="linkedin" class="w-4 h-4"></i>
+                         <!-- LinkedIn (Restored) -->
+                        <a href="https://www.linkedin.com/in/chethana-sn/" target="_blank" class="hover:text-gray-200 transition duration-150" aria-label="LinkedIn">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.529-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
                         </a>
-                        <!-- GitHub (Using the alias 'Hindukh' from the resume for links) -->
-                        <a href="https://github.com/Hindukh" target="_blank" class="w-8 h-8 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-pink-500 transition">
-                            <i data-lucide="github" class="w-4 h-4"></i>
+                        <!-- GitHub -->
+                        <a href="https://github.com/Chethanasn" target="_blank" class="hover:text-gray-200 transition duration-150" aria-label="GitHub">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.833 2.807 1.304 3.492.997.107-.775.418-1.304.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.003.404 2.294-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.772.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.792 24 17.291 24 12c0-6.627-5.373-12-12-12z"/></svg>
                         </a>
-                        <!-- Mail -->
-                        <a href="mailto:hindushreehv46@gmail.com" class="w-8 h-8 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-pink-500 transition">
-                            <i data-lucide="mail" class="w-4 h-4"></i>
+                        <!-- Mail Icon (Updated to Gmail Compose URL) -->
+                         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=chethanasn2003@gmail.com" target="_blank" class="hover:text-gray-200 transition duration-150" aria-label="Email (Open in Gmail)">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12.713l-12-9.713h24l-12 9.713zm0 2.583l-12-9.713v15.426h24v-15.426l-12 9.713z"/></svg>
                         </a>
                     </div>
                 </div>
             </div>
-
-            <!-- Copyright and Motto -->
-            <div class="mt-8 pt-4 border-t border-white border-opacity-30 text-center text-sm">
-                <p class="italic mb-2">"Dream big, work hard, stay focused."</p>
-                <p>&copy; 2025 Hindushree H V. All rights reserved.</p>
+            
+            <!-- Bottom Section (Quote and Copyright) -->
+            <div class="pt-6 text-center text-sm">
+                
+                <p class="italic text-xs opacity-80">"Dream big, work hard, stay focused."</p>
+                <p class="text-xs opacity-60 mt-1">&copy; 2025 All rights reserved.</p>
             </div>
         </div>
     </footer>
-    
-    <!-- Gemini API Script -->
+
+    <!-- JavaScript for Mobile Menu Functionality (and AUTO SCROLL) -->
     <script>
-        const API_KEY = ""; // Placeholder for Canvas environment
-        const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent";
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Mobile Menu Toggle Logic ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.querySelectorAll('#mobile-menu a');
 
-        // --- Modal Control Functions ---
-        function showModal(title, content) {
-            const modal = document.getElementById('llm-modal');
-            document.getElementById('modal-title').textContent = title;
-            document.getElementById('modal-body').innerHTML = content;
-            modal.classList.add('modal-active', 'opacity-100', 'pointer-events-auto');
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-        }
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
 
-        function closeModal() {
-            const modal = document.getElementById('llm-modal');
-            modal.classList.remove('modal-active', 'opacity-100', 'pointer-events-auto');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-        }
+            // Close menu when a link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
 
-        // --- API Helper Function with Exponential Backoff ---
-        async function fetchWithRetry(userQuery, systemPrompt, useSearchGrounding, retries = 3) {
-            for (let i = 0; i < retries; i++) {
-                try {
-                    const payload = {
-                        contents: [{ parts: [{ text: userQuery }] }],
-                        systemInstruction: { parts: [{ text: systemPrompt }] },
-                    };
+            // --- Horizontal Auto-Scroll Logic for Certificates ---
+            const scrollContainer = document.querySelector('.scroll-container');
+            const scrollCards = document.querySelector('.scroll-cards');
+            const cardCount = scrollCards.children.length;
 
-                    if (useSearchGrounding) {
-                        payload.tools = [{ "google_search": {} }];
-                    }
+            let scrollInterval;
+            
+            const startAutoScroll = () => {
+                if (!scrollContainer || cardCount <= 1) return;
 
-                    const response = await fetch(`${API_URL}?key=${API_KEY}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
+                // Calculate the width of one card plus its gap (300px + 1.5rem gap)
+                const gap = 1.5 * parseFloat(getComputedStyle(scrollContainer).fontSize);
+                const cardWidthWithMargin = 300 + gap; 
+                
+                let scrollPosition = scrollContainer.scrollLeft;
 
-                    if (response.status === 429 && i < retries - 1) {
-                        // Rate limit exceeded, wait and retry
-                        const delay = Math.pow(2, i) * 1000;
-                        await new Promise(resolve => setTimeout(resolve, delay));
-                        continue;
-                    }
-
-                    if (!response.ok) {
-                        throw new Error(`API call failed with status: ${response.status}`);
-                    }
-
-                    const result = await response.json();
-                    const candidate = result.candidates?.[0];
-
-                    if (candidate && candidate.content?.parts?.[0]?.text) {
-                        const text = candidate.content.parts[0].text;
-                        let sources = [];
-                        const groundingMetadata = candidate.groundingMetadata;
-
-                        if (groundingMetadata && groundingMetadata.groundingAttributions) {
-                            sources = groundingMetadata.groundingAttributions
-                                .map(attribution => ({
-                                    uri: attribution.web?.uri,
-                                    title: attribution.web?.title,
-                                }))
-                                .filter(source => source.uri && source.title);
-                        }
-                        return { text, sources };
+                const autoScroll = () => {
+                    // Check if we are at the end of the scrollable content
+                    const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+                    if (scrollPosition >= maxScroll - 10) { // Added tolerance of 10px
+                        // Reset scroll position
+                        scrollPosition = 0;
                     } else {
-                        throw new Error("Received empty or malformed response from Gemini API.");
-                    }
-                } catch (error) {
-                    if (i === retries - 1) throw error;
-                    // Otherwise, the loop will continue to retry
-                }
-            }
-        }
-
-        // --- Feature 1: Project Summarizer ---
-        async function summarizeProject(button) {
-            const card = button.closest('.card');
-            const title = card.querySelector('h3').textContent;
-            const descriptionElements = card.querySelectorAll('.project-desc');
-            let description = title + ". ";
-            descriptionElements.forEach(p => { description += p.textContent.trim() + " "; });
-
-            const userQuery = `Simplify and explain the following project description for a non-technical manager in 4-5 concise bullet points. The tone should be professional and highlight the business value and key technologies used: ${description}`;
-            
-            // Show loading state
-            showModal("Generating Explanation...", `<div class="flex justify-center items-center h-20"><svg class="animate-spin h-8 w-8 text-pink-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg><span class="ml-3 text-gray-600">AI is simplifying your project description...</span></div>`);
-
-            const systemPrompt = "You are a concise technical writer. Your goal is to take a complex project description and translate it into simple, high-impact bullet points for a business audience.";
-            
-            try {
-                const result = await fetchWithRetry(userQuery, systemPrompt, false);
-                // Convert Markdown to HTML for list rendering
-                const formattedText = result.text.replace(/\*/g, '').replace(/^- /gm, '<li>').replace(/^(.+)$/gm, '<ul>$1</ul>');
-                showModal(`Simplified Explanation for: ${title}`, `<ul class="list-disc list-inside space-y-2">${formattedText}</ul>`);
-            } catch (error) {
-                showModal("Error", `<p class="text-red-500">Failed to get explanation. The API call failed. Please check the console for details.</p>`);
-                console.error("API Error:", error);
-            }
-        }
-
-        // --- Feature 2: AI Career Prep (Keywords with Search Grounding) ---
-        async function generateKeywords() {
-            const roleInput = document.getElementById('job-role-input');
-            const role = roleInput.value.trim();
-            const resultDiv = document.getElementById('keyword-content');
-            const resultsContainer = document.getElementById('keyword-results');
-            const button = document.getElementById('keyword-button');
-
-            if (!role) {
-                roleInput.placeholder = "Please enter a job role!";
-                return;
-            }
-
-            button.disabled = true;
-            button.textContent = "Searching for Keywords...";
-            resultsContainer.classList.remove('hidden');
-            
-            // Loading indicator
-            resultDiv.innerHTML = `<div class="flex justify-center items-center h-10"><svg class="animate-spin h-5 w-5 text-pink-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg><span class="ml-2 text-sm text-gray-600">Gathering current market data...</span></div>`;
-
-            const userQuery = `Based on current industry standards and job listings, what are the top 5 essential hard skills and 3 critical soft skills for a '${role}'? Format the response as a single, numbered or bulleted list.`;
-            const systemPrompt = "You are a career counselor and job market expert. Use Google Search to find up-to-date information on the most requested skills for the specified job role.";
-
-            try {
-                const result = await fetchWithRetry(userQuery, systemPrompt, true);
-                
-                let htmlContent = result.text.replace(/\*/g, ''); // Basic markdown to prevent issues
-                
-                // Append citations
-                if (result.sources && result.sources.length > 0) {
-                    htmlContent += '<p class="mt-4 text-xs font-medium text-gray-500 border-t pt-2">Sources Grounding:</p><ul class="list-disc list-inside text-xs text-gray-500 space-y-1">';
-                    result.sources.forEach((source) => {
-                        // Ensure we don't display 'undefined' titles
-                        if (source.title && source.uri) {
-                            htmlContent += `<li><a href="${source.uri}" target="_blank" class="hover:underline">${source.title}</a></li>`;
+                        // Move one card width forward
+                        scrollPosition += cardWidthWithMargin;
+                        // Clamp to maximum scroll position if overshoot is detected
+                        if (scrollPosition > maxScroll) {
+                             scrollPosition = maxScroll;
                         }
+                    }
+
+                    scrollContainer.scrollTo({
+                        left: scrollPosition,
+                        behavior: 'smooth'
                     });
-                    htmlContent += '</ul>';
-                }
+                };
 
-                resultDiv.innerHTML = htmlContent;
+                // Clear any existing interval before setting a new one
+                stopAutoScroll(); 
+                scrollInterval = setInterval(autoScroll, 4000);
+            };
 
-            } catch (error) {
-                resultDiv.innerHTML = `<p class="text-red-500">Failed to fetch current keywords. API Error: ${error.message}</p>`;
-                console.error("API Error:", error);
-            } finally {
-                button.disabled = false;
-                button.textContent = "Generate Keywords & Skills";
-            }
-        }
+            const stopAutoScroll = () => {
+                clearInterval(scrollInterval);
+                scrollInterval = null;
+            };
 
+
+            // Start auto-scroll on load
+            startAutoScroll();
+
+            // Pause scrolling when the user hovers over the container (desktop experience)
+            scrollContainer.addEventListener('mouseenter', stopAutoScroll);
+
+            // Resume scrolling when the user moves the mouse away (desktop experience)
+            scrollContainer.addEventListener('mouseleave', startAutoScroll);
+
+        });
     </script>
 </body>
 </html>
