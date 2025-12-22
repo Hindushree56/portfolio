@@ -3,453 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hindushree H V | Full Stack Developer</title>
+    <title>Hindushree H V | Portfolio</title>
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-        /* --- Global Light Mode Styles --- */
-        
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #fcfcfc; /* Very light background */
-            color: #333333; /* Dark text */
+            background-color: #ffffff;
+            color: #333333;
             scroll-behavior: smooth;
         }
 
-        /* Define the custom orange/red gradient based on the reference images */
         .primary-gradient {
-            background: linear-gradient(135deg, #FF6B6B 0%, #FFA07A 100%);
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
         }
+        
         .text-primary {
-            color: #FF6B6B; /* Always red/orange */
+            color: #7c3aed;
         }
-        .skill-tag {
-            background-color: #fdd2c5;
-            color: #d64d4d;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px; 
-            transition: transform 0.2s, background-color 0.3s;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-        }
-        .skill-tag:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
-        }
+
         .section-heading-custom {
             font-size: 2.25rem;
             font-weight: 800;
-            color: #333; /* Explicitly dark */
             text-align: center;
             margin-bottom: 3rem;
-            padding-top: 1rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
         }
+
         .section-heading-custom::after {
             content: '';
             display: block;
-            width: 50px;
+            width: 60px;
             height: 4px;
-            background: #FF6B6B;
-            margin: 0.5rem auto 0;
+            background: #8b5cf6;
+            margin: 0.75rem auto 0;
             border-radius: 2px;
         }
-        /* Styling for the Project card buttons */
-        .btn-code {
-            background-color: #ffffff; /* Light background */
-            color: #333333; /* Dark text */
-            padding: 0.5rem 1.5rem;
-            border: 1px solid #eee;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.2s, transform 0.2s;
-        }
-        .btn-code:hover {
-            background-color: #eee;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        /* Card Styling */
-        .project-card, .scroll-card-item {
-            background-color: #ffffff;
-            border: 1px solid #eee;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            transition: background-color 0.3s, border-color 0.3s;
-        }
-        .profile-picture {
-            width: 100%;
+
+        /* Project Cards */
+        .project-card {
+            background: white;
+            border: 1px solid #f3f4f6;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
             height: 100%;
-            border-radius: 50%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(124, 58, 237, 0.1);
+        }
+
+        .project-preview {
+            width: 100%;
+            height: 200px;
             object-fit: cover;
         }
-        /* Custom styles for the horizontal sliding/scrolling section */
+
+        /* Certificate Scrolling */
         .scroll-container {
             width: 100%;
-            overflow-x: scroll; /* Enables horizontal scrolling */
-            -webkit-overflow-scrolling: touch; /* Improves scrolling on iOS */
-            padding-bottom: 1rem; /* Space for the scrollbar */
-            scroll-snap-type: x mandatory; /* Enables smooth snapping */
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 20px 0;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* IE 10+ */
         }
+
+        .scroll-container::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
         .scroll-cards {
-            display: flex;
-            flex-wrap: nowrap; /* Forces horizontal layout */
+            display: inline-flex;
             gap: 1.5rem;
-            padding: 0 0.5rem; /* Small internal padding for edges */
+            padding: 0 1rem;
         }
-        .scroll-card-item {
-            flex: 0 0 auto; /* Ensures cards maintain their size */
-            width: 300px; /* Fixed width for the card item */
-            min-height: 400px; /* Ensure visual consistency */
-            border: 1px solid #10b981; 
+
+        .cert-card {
+            width: 300px;
+            background: white;
+            border: 1px solid #e5e7eb;
             border-radius: 1rem;
-            padding: 1rem;
-            scroll-snap-align: center; /* Snaps the center of the card to the scroll position */
+            padding: 1.5rem;
+            flex-shrink: 0;
+            white-space: normal;
+            transition: border-color 0.3s;
         }
-        .cert-image {
+
+        .cert-card:hover {
+            border-color: #7c3aed;
+        }
+
+        .cert-img {
             width: 100%;
-            height: 150px;
-            object-fit: cover;
+            height: 160px;
+            object-fit: contain;
+            background: #f9fafb;
             border-radius: 0.5rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-illustration {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        header {
+            backdrop-filter: blur(8px);
+            background-color: rgba(99, 102, 241, 0.95);
         }
     </style>
 </head>
-<body class="text-gray-800">
+<body>
 
-    <!-- Header & Navigation (Fixed top bar with orange background) -->
-    <header class="sticky top-0 z-50 primary-gradient shadow-xl">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 shadow-md">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
             <div class="flex flex-col leading-tight">
-                <a href="#home" class="text-xl font-extrabold text-white tracking-wider">Hindushree H V</a>
-                <span class="text-sm font-light text-white opacity-90">Full Stack Web Developer</span>
+                <a href="#" class="text-xl font-black text-white">Hindushree H V</a>
             </div>
             
-            <!-- Desktop Navigation Links -->
-            <div class="hidden sm:flex space-x-6 items-center">
-                <!-- Resume Link -->
-                <a href="https://github.com/Hindushree56/portfolio/blob/main/Hindushree_Resume.pdf.pdf" target="_blank" class="text-white hover:text-gray-200 transition duration-150 font-medium flex items-center">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                    Resume
-                </a>
-                <a href="#about" class="text-white hover:text-gray-200 transition duration-150 font-medium flex items-center">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                    About
-                </a>
-                <a href="#projects" class="text-white hover:text-gray-200 transition duration-150 font-medium flex items-center">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10l-4-4m4 4l4-4m4-4v10m0-10l4 4m-4-4l-4 4"></path></svg>
-                    Projects
-                </a>
-                
-                <a href="#contact" class="text-white hover:text-gray-200 transition duration-150 font-medium flex items-center">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-17 4v7a2 2 0 002 2h12a2 2 0 002-2v-7"></path></svg>
-                    Contact
-                </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="text-white hover:text-indigo-200 transition font-semibold">About</a>
+                <a href="#projects" class="text-white hover:text-indigo-200 transition font-semibold">Projects</a>
+                <a href="#certificates" class="text-white hover:text-indigo-200 transition font-semibold">Certificates</a>
+                <a href="https://raw.githubusercontent.com/Hindushree56/portfolio/main/Resumae.jpeg" target="_blank" class="bg-white text-indigo-600 px-5 py-2 rounded-lg font-bold">Resume</a>
             </div>
             
-            <!-- Mobile Menu Button (Hamburger) -->
-            <div class="flex items-center">
-                <button id="mobile-menu-button" class="sm:hidden p-2 rounded-md text-white hover:bg-white hover:text-gray-800 transition duration-150" aria-label="Toggle Menu">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                </button>
-            </div>
+            <button id="mobile-menu-button" class="md:hidden p-2 text-white">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
         </nav>
 
-        <!-- Mobile Menu (Hidden by default) - White background for contrast -->
-        <div id="mobile-menu" class="sm:hidden hidden bg-white border-t border-gray-200">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#about" class="block text-gray-800 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">ABOUT</a>
-                <a href="#skills" class="block text-gray-800 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">SKILLS</a>
-                <a href="#projects" class="block text-gray-800 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">PROJECTS</a>
-                <a href="#contact" class="block text-gray-800 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">CONTACT</a>
-            </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white p-4 shadow-xl">
+            <a href="#about" class="block py-3 text-gray-800 font-semibold">About</a>
+            <a href="#projects" class="block py-3 text-gray-800 font-semibold">Projects</a>
+            <a href="#certificates" class="block py-3 text-gray-800 font-semibold">Certificates</a>
+            <a href="#contact" class="block py-3 text-indigo-600 font-bold">Contact</a>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-
-        <!-- Home/About Section -->
-        <section id="home" class="py-10"> <!-- Minimal spacing after sticky header -->
-            <h2 class="section-heading-custom text-primary">ABOUT ME</h2>
-            
-            <div id="about" class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
-                
-                <!-- Left Column (Text) -->
-                <div class="md:col-span-2 text-lg text-gray-700 space-y-4">
-                    <p>Hello, I'm <strong class="text-black font-extrabold">Hindushree H V</strong>, a passionate Computer Application graduate with a keen eye for detail and a love for creating seamless user experiences.</p>
-                    <p>I specialize in Web Full Stack Development and Data Science, utilizing skills in Python, HTML, CSS, and JavaScript to build secure, scalable applications.</p>
-                    <p>My goal is to craft efficient, beautiful, and interactive applications that solve real-world problems through clean and well-structured code. I'm actively expanding my knowledge in new tools and frameworks in the development ecosystem.</p>
-                    
-                    <!-- Buttons removed -->
+    <main>
+        <!-- About Section -->
+        <section id="about" class="max-w-7xl mx-auto px-4 py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <h1 class="text-5xl font-black text-indigo-950">Hi, I'm <span class="text-primary">Hindushree</span></h1>
+                <p class="text-xl text-gray-600 leading-relaxed">
+                    A Full Stack Developer passionate about building efficient and interactive applications. I specialize in Python, Django, and modern web technologies.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#contact" class="primary-gradient text-white px-8 py-3 rounded-xl font-bold">Hire Me</a>
+                    <a href="#projects" class="border-2 border-indigo-100 px-8 py-3 rounded-xl font-bold text-indigo-600">View Work</a>
                 </div>
+            </div>
+            <div class="flex justify-center">
+                <img src="https://raw.githubusercontent.com/Hindushree56/portfolio/main/Picture.jpg" alt="Hindushree" class="w-80 h-80 rounded-full object-cover border-8 border-indigo-50 shadow-2xl">
+            </div>
+        </section>
 
-                <!-- Right Column (Profile Image Placeholder) -->
-                <div class="md:col-span-1 flex justify-center">
-                    <div class="w-64 h-64 rounded-full primary-gradient p-1 shadow-2xl">
-                        <!-- UPDATED: Inserting your profile picture URL -->
-                        <img 
-                            src="https://raw.githubusercontent.com/Hindushree56/portfolio/main/Picture.jpg" 
-                            alt="Hindushree HV Profile Picture" 
-                            class="profile-picture"
-                            onerror="this.onerror=null; this.src='https://placehold.co/250x250/fff/ccc?text=Photo';" 
-                        >
+        <!-- Projects Section -->
+        <section id="projects" class="bg-gray-50 py-20">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="section-heading-custom">PROJECTS</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <img src="https://raw.githubusercontent.com/Hindushree56/portfolio/main/diabetes%20prediction.png" class="project-preview" alt="Diabetes Prediction">
+                        <div class="p-6 space-y-3">
+                            <h4 class="text-xl font-bold">Diabetes Prediction</h4>
+                            <p class="text-gray-600 text-sm">AI health monitoring using Django and Machine Learning.</p>
+                            <a href="https://github.com/Hindushree56/diabetes-prediction-django" target="_blank" class="text-primary font-bold inline-block mt-4">Source Code →</a>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <img src="https://raw.githubusercontent.com/Hindushree56/portfolio/main/attendence%20management%20system.png" class="project-preview" alt="Attendance System">
+                        <div class="p-6 space-y-3">
+                            <h4 class="text-xl font-bold">Attendance System</h4>
+                            <p class="text-gray-600 text-sm">Full-stack platform built with PHP and MySQL.</p>
+                            <a href="https://github.com/Hindushree56/attendance-system" target="_blank" class="text-primary font-bold inline-block mt-4">Source Code →</a>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <img src="https://raw.githubusercontent.com/Hindushree56/portfolio/main/sign_language.png" class="project-preview" alt="Sign Language">
+                        <div class="p-6 space-y-3">
+                            <h4 class="text-xl font-bold">ASL Translator</h4>
+                            <p class="text-gray-600 text-sm">Real-time computer vision using Keras and OpenCV.</p>
+                            <a href="https://github.com/Hindushree56/Sign_Language_Translator" target="_blank" class="text-primary font-bold inline-block mt-4">Source Code →</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Technical Skills Section (Mimicking the tag cloud style from image_af9b54.png) -->
-        <section id="skills" class="py-16 border-t border-gray-100">
-            <h2 class="section-heading-custom text-primary">Technologies & Tools I Work With</h2>
-            
-            <div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
-                <!-- Programming & Data Structures -->
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">C / C++</span>
-                <span class="skill-tag">Data Structures & Algorithms</span>
-
-                <!-- Web Development & Full Stack -->
-                <span class="skill-tag">HTML</span>
-                <span class="skill-tag">CSS</span>
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">PHP</span>
-                <span class="skill-tag">Responsive Design</span>
-                <!-- Updated Skills based on projects -->
-                <span class="skill-tag">TensorFlow</span>
-                <span class="skill-tag">Streamlit</span>
-
-
-                <!-- Database & Tools -->
-                <span class="skill-tag">MySQL / SQL</span>
-                <span class="skill-tag">Oracle</span>
-                <span class="skill-tag">Git & GitHub</span>
-                <span class="skill-tag">VS Code / Eclipse</span>
-                
-                <!-- Mobile & Architecture (from Document Tracking Project) -->
-                <span class="skill-tag">Flutter</span>
-                <span class="skill-tag">Java</span>
-                <span class="skill-tag">Firebase</span>
-                <span class="skill-tag">XML</span>
-            </div>
-        </section>
-
-        <!-- Projects Section (Mimicking the card layout from image_af9afb.jpg) -->
-        <section id="projects" class="py-16 border-t border-gray-100">
-            <h2 class="section-heading-custom text-primary">PROJECTS</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Project 1: Diabetes Prediction-django -->
-                <div class="project-card bg-white p-6 rounded-xl shadow-lg border-b-4 border-gray-100 hover:shadow-2xl transition duration-500 flex flex-col justify-between">
-                    <div>
-                        <!-- Project Image: Diabetes Prediction-django -->
-                        <img 
-                            src="https://raw.githubusercontent.com/Hindushree56/portfolio/main/diabetes%20prediction.png" 
-                            alt="Diabetes Prediction-django Screenshot" 
-                            class="project-preview"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x150/999/fff?text=No+Image+Found';"
-                        >
-                        
-                        <h4 class="text-xl font-bold text-gray-900 mb-2">Diabetes Prediction-django</h4>
-                        <p class="text-sm font-medium text-primary mb-3">AI-ML Project | May 2024 - June 2024</p>
-                        <p class="text-gray-700 mb-4 text-sm">Developed a web application that digitizes veterinary clinic workflows The project offers features for appointment booking,patient management, and veterinary record keeping.
-Demonstratedexpertisein full-stackdevelopment, user experience design, and healthcare software solutions.</p>
-                        <p class="text-xs font-semibold text-gray-500 mb-4">Tech Stack: MySQL, HTML, CSS, JavaScript , PHP</p>
-                    </div>
-                    <div class="flex justify-center mt-4"> 
-                        <a href="https://github.com/Chethanasn/Vet-ventures" target="_blank" class="btn-code w-full text-center">View Code</a>
-                    </div>
-                </div>
-
-                <!-- Project 2: Animae Enigma -->
-                <div class="project-card bg-white p-6 rounded-xl shadow-lg border-b-4 border-gray-100 hover:shadow-2xl transition duration-500 flex flex-col justify-between">
-                    <div>
-                        <!-- Project Image: Animae Enigma -->
-                        <img 
-                            src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/animae_enigma.jpg" 
-                            alt="Animae Enigma App Screenshot" 
-                            class="project-preview"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x150/999/fff?text=No+Image';"
-                        >
-
-                        <h4 class="text-xl font-bold text-gray-900 mb-2">Animae Enigma</h4>
-                        <p class="text-sm font-medium text-primary mb-3">Gamified Recognition App | June 2025 - July 2025</p>
-                         <p class="text-gray-700 mb-4 text-sm">Developed an interactive web application that gamifies anime character recognition using deep learning and image processing. The app features multi-level gameplay, including blurred image guessing and tile-based puzzles.</p>
-                        <p class="text-xs font-semibold text-gray-500 mb-4">Tech Stack: Python, TensorFlow, Streamlit, HTML, CSS, JavaScript</p>
-                    </div>
-                    <div class="flex justify-center mt-4"> 
-                        <a href="https://github.com/Chethanasn/animae-enigma." target="_blank" class="btn-code w-full text-center">View Code</a>
-                    </div>
-                </div>
-                
-                <!-- Project 3: Mind Sprint -->
-                <div class="project-card bg-white p-6 rounded-xl shadow-lg border-b-4 border-gray-100 hover:shadow-2xl transition duration-500 flex flex-col justify-between">
-                    <div>
-                        <!-- Project Image: Mind Sprint -->
-                        <img 
-                            src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/mind_sprint.jpg" 
-                            alt="Mind Sprint Web Platform Screenshot" 
-                            class="project-preview"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x150/999/fff?text=No+Image';"
-                        >
-
-                        <h4 class="text-xl font-bold text-gray-900 mb-2">Mind Sprint</h4>
-                        <p class="text-sm font-medium text-primary mb-3">Front-End Developer | Aug 2024 - Oct 2024</p>
-                        <p class="text-gray-700 mb-4 text-sm">Mind Sprint is an innovative educational platform where students can learn through video lessons, access PDF study materials, and get instant support from an integrated AI chatbot. With a simple and intuitive interface, it helps learners study anytime, anywhere with ease.</p>
-                        <p class="text-xs font-semibold text-gray-500 mb-4">Tech Stack: HTML, CSS, JavaScript, PHP, MySQL</p>
-                    </div>
-                    <div class="flex justify-center mt-4"> 
-                        <a href="https://github.com/Chethanasn/Mind_Sprint" target="_blank" class="btn-code w-full text-center">View Code</a>
-                    </div>
-                </div>
-
-                <!-- Project 4: Document Tracking System -->
-                <div class="project-card bg-white p-6 rounded-xl shadow-lg border-b-4 border-gray-100 hover:shadow-2xl transition duration-500 flex flex-col justify-between">
-                    <div>
-                        <!-- Project Image: Document Tracking System -->
-                        <img 
-                            src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/DTS.jpg" 
-                            alt="DTS Project" 
-                            class="project-preview"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x150/999/fff?text=No+Image';"
-                        >
-
-                        <h4 class="text-xl font-bold text-gray-900 mb-2">Document Tracking System (Android)</h4>
-                        <p class="text-sm font-medium text-primary mb-3">Mobile Application | Sep 2025 - Oct 2025</p>
-                        <p class="text-gray-700 mb-4 text-sm">This Android-based Document Tracking System allows users to securely store, manage, and monitor documents within an
-organization
-It enables efficient tracking, quick retrieval, and real-time status updates, ensuring smooth workflow and improved document
-management efficiency.</p>
-                        <p class="text-xs font-semibold text-gray-500 mb-4">Tech Stack: Android, Gradle, Firebase, Java, MVVM Architecture</p>
-                    </div>
-                    <div class="flex justify-center mt-4"> 
-                        <a href="https://github.com/Chethanasn/Document_Tracking_System" target="_blank" class="btn-code w-full text-center">View Code</a>
-                    </div>
-                </div>
-
-                <!-- Project 5: SweetShop Management System -->
-                <div class="project-card bg-white p-6 rounded-xl shadow-lg border-b-4 border-gray-100 hover:shadow-2xl transition duration-500 flex flex-col justify-between">
-                    <div>
-                        <!-- Project Image: SweetShop Management System -->
-                        <img 
-                            src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/sweet_shop.jpg" 
-                            alt="Sweet Shop Project" 
-                            class="project-preview"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x150/999/fff?text=No+Image';"
-                        >
-
-                        <h4 class="text-xl font-bold text-gray-900 mb-2">SweetShop Management</h4>
-                        <p class="text-sm font-medium text-primary mb-3">Full Stack Developer | November 2025</p>
-                        <p class="text-gray-700 mb-4 text-sm">web application designed to simplify and automate the process of managing a sweet shop’s inventory and sales. The system provides role-based dashboards for Admin and User, enabling efficient sweet management and secure user
-authentication.</p>
-                        <p class="text-xs font-semibold text-gray-500 mb-4">Tech Stack: HTML, CSS, JavaScript, React , TypeScript , Node.js</p>
-                    </div>
-                    <div class="flex justify-center mt-4"> 
-                        <a href="https://github.com/Chethanasn/Sweet_Shop_Management_System" target="_blank" class="btn-code w-full text-center">View Code</a>
+        <!-- Certificates Section (With Auto Scroll) -->
+        <section id="certificates" class="py-20">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="section-heading-custom">CERTIFICATIONS</h2>
+                <div class="scroll-container">
+                    <div class="scroll-cards">
+                        <div class="cert-card">
+                            <img src="https://raw.githubusercontent.com/Hindushree56/portfolio/main/MongoDB.png" class="cert-img" alt="MongoDB">
+                            <h5 class="font-bold text-lg">MongoDB Developer</h5>
+                            <p class="text-xs text-primary font-bold">Udemy</p>
+                        </div>
+                        <div class="cert-card">
+                            <img src="https://raw.githubusercontent.com/Hindushree56/portfolio/main/Full%20Stack.png" class="cert-img" alt="Meta Full Stack">
+                            <h5 class="font-bold text-lg">Full Stack Development</h5>
+                            <p class="text-xs text-primary font-bold">Meta · Coursera</p>
+                        </div>
+                        <div class="cert-card">
+                            <img src="https://raw.githubusercontent.com/Hindushree56/portfolio/main/Microsoft%20AI%20Learning%20Challenge.png" class="cert-img" alt="Microsoft AI">
+                            <h5 class="font-bold text-lg">Microsoft AI Challenge</h5>
+                            <p class="text-xs text-primary font-bold">Microsoft</p>
+                        </div>
+                        <div class="cert-card">
+                            <img src="https://raw.githubusercontent.com/Hindushree56/portfolio/main/cloud%20computing.png" class="cert-img" alt="Cloud Computing">
+                            <h5 class="font-bold text-lg">Cloud Computing</h5>
+                            <p class="text-xs text-primary font-bold">NMAMIT & Wipfli</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <!-- Courses and Certifications Section (Horizontally Scrolling Layout) -->
-        <section id="education" class="py-16 border-t border-gray-100">
-            <h2 class="section-heading-custom text-primary">CERTIFICATES</h2>
 
-            <!-- Outer container for horizontal scrolling -->
-            <div class="scroll-container">
-                <div class="scroll-cards">
-                    
-                    <!-- Card 3: Microsoft FullStack Developer Certification -->
-                    <div class="scroll-card-item p-6 rounded-xl shadow-lg">
-                        <div class="pb-4 mb-2">
-                            <img src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/Certificate5.jpg" alt="Microsoft FullStack Developer Certificate" class="cert-image" onerror="this.onerror=null; this.src='https://placehold.co/100x120/d1e7c5/10b981?text=Cert%5C1Image';">
-                            <h4 class="text-lg font-bold text-gray-900">Microsoft FullStack Developer</h4>
-                            <p class="text-primary font-medium text-sm">Coursera</p>
-                        </div>
-                        <div class="pt-2">
-                            <h5 class="font-semibold mb-1 text-sm">What I Learned:</h5>
-                            <ul class="list-disc pl-4 space-y-1 text-sm text-gray-700">
-                                <li>Comprehensive Full-Stack MERN stack concepts.</li>
-                                <li>Building scalable web applications.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 4: Data Analytics Certification -->
-                     <div class="scroll-card-item p-6 rounded-xl shadow-lg">
-                         <div class="pb-4 mb-2">
-                            <img src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/Certificate3.jpg" alt="Data Analytics Certificate" class="cert-image" onerror="this.onerror=null; this.src='https://placehold.co/100x120/f9f6e8/8d6e38?text=Cert%5C2Image';">
-                            <h4 class="text-lg font-bold text-gray-900">Data Analytics using ChatGPT with Excel and Python</h4>
-                            <p class="text-primary font-medium text-sm">GreatLearning</p>
-                        </div>
-                        <div class="pt-2">
-                            <h5 class="font-semibold mb-1 text-sm">Key Skills:</h5>
-                            <ul class="list-disc pl-4 space-y-1 text-sm text-gray-700">
-                                <li>Data manipulation and visualization using Python.</li>
-                                <li>Leveraging LLMs (ChatGPT) for analytical tasks.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 5: Advanced Styling Certification -->
-                     <div class="scroll-card-item p-6 rounded-xl shadow-lg">
-                         <div class="pb-4 mb-2">
-                            <img src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/Certificate1.jpg" alt="Advanced Styling Certificate" class="cert-image" onerror="this.onerror=null; this.src='https://placehold.co/100x120/c2d3ff/007bff?text=Cert%5C3Image';">
-                            <h4 class="text-lg font-bold text-gray-900">Advanced Styling with Responsive Design</h4>
-                            <p class="text-primary font-medium text-sm">University of Michigan (Coursera)</p>
-                        </div>
-                        <div class="pt-2">
-                            <h5 class="font-semibold mb-1 text-sm">Key Focus:</h5>
-                            <ul class="list-disc pl-4 space-y-1 text-sm text-gray-700">
-                                <li>CSS Flexbox and Grid mastery.</li>
-                                <li>Creating fluid, mobile-first web layouts.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Card 6: UI Design Certification -->
-                     <div class="scroll-card-item p-6 rounded-xl shadow-lg">
-                         <div class="pb-4 mb-2">
-                            <img src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/Certificate2.jpg" alt="Visual Elements of User Interface Design Certificate" class="cert-image" onerror="this.onerror=null; this.src='https://placehold.co/100x120/f9f6e8/8d6e38?text=Cert%5C4Image';">
-                            <h4 class="text-lg font-bold text-gray-900">Visual Elements of User Interface Design</h4>
-                            <p class="text-primary font-medium text-sm">Calarts (Coursera)</p>
-                        </div>
-                        <div class="pt-2">
-                            <h5 class="font-semibold mb-1 text-sm">Key Focus:</h5>
-                            <ul class="list-disc pl-4 space-y-1 text-sm text-gray-700">
-                                <li>Typography, color theory, and visual hierarchy.</li>
-                                <li>Principles of attractive and usable UI design.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 7: Prompt Engineering Certification -->
-                     <div class="scroll-card-item p-6 rounded-xl shadow-lg">
-                         <div class="pb-4 mb-2">
-                            <img src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/Certificate4.jpg" alt="Prompt Engineering Certificate" class="cert-image" onerror="this.onerror=null; this.src='https://placehold.co/100x120/d1e7c5/10b981?text=Cert%5C5Image';">
-                            <h4 class="text-lg font-bold text-gray-900">Prompt Engineering for ChatGPT</h4>
-                            <p class="text-primary font-medium text-sm">GreatLearning</p>
-                        </div>
-                        <div class="pt-2">
-                            <h5 class="font-semibold mb-1 text-sm">Key Focus:</h5>
-                            <ul class="list-disc pl-4 space-y-1 text-sm text-gray-700">
-                                <li>Designing effective prompts for LLMs.</li>
-                                <li>Maximizing utility from generative AI tools.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!-- End Horizontal Scrolling Container -->
-
-        </section>
-
-        <!-- Contact Section (UPDATED TO FORM STRUCTURE) -->
+        <!-- Contact Section (AS REQUESTED) -->
         <section id="contact" class="py-16 border-t border-gray-100">
             <h2 class="section-heading-custom text-primary">CONTACT ME</h2>
             
@@ -458,182 +246,125 @@ authentication.</p>
                 <!-- Left Column (Illustration) -->
                 <div class="flex justify-center items-center h-full hidden md:flex">
                     <img 
-                        src="https://raw.githubusercontent.com/Chethanasn/portfolio/main/1.jpg" 
-                        alt="Contact Illustration: Chethana on the phone" 
+                        src="https://raw.githubusercontent.com/Hindushree56/portfolio/main/1.png" 
+                        alt="Contact Illustration" 
                         class="contact-illustration rounded-xl shadow-lg"
-                        onerror="this.onerror=null; this.src='https://placehold.co/400x400/fff000/ffffff?text=Image+Load+Failed'; console.error('Image failed to load. Please ensure the URL is a direct link to the image file.');"
+                        onerror="this.onerror=null; this.src='https://placehold.co/400x400/fff000/ffffff?text=Image+Load+Failed';"
                     >
                 </div>
 
                 <!-- Right Column (Contact Form) -->
-                <!-- Converted div to form for submission readiness -->
                 <form action="https://formspree.io/f/meoyrgyd" method="POST" class="space-y-4">
                     <div class="space-y-2">
                         <label for="name" class="font-medium text-gray-700">Name:</label>
-                        <!-- Added name attribute -->
                         <input type="text" id="name" name="name" placeholder="Enter your name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-150" required>
                     </div>
                     <div class="space-y-2">
                         <label for="email" class="font-medium text-gray-700">Email:</label>
-                        <!-- Added name attribute -->
                         <input type="email" id="email" name="_replyto" placeholder="Enter your email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-150" required>
                     </div>
                     <div class="space-y-2">
                         <label for="message" class="font-medium text-gray-700">Message:</label>
-                        <!-- Added name attribute -->
                         <textarea id="message" name="message" rows="4" placeholder="Your message" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-150" required></textarea>
                     </div>
                     <button type="submit" class="w-full primary-gradient text-white p-3 rounded-lg font-semibold shadow-lg hover:opacity-90 transition duration-300">
                         Send <span class="ml-2">&#x27A4;</span>
                     </button>
-                    
                 </form>
             </div>
         </section>
-
     </main>
-    
-    <!-- Footer (Matching reference image: image_93f2a1.jpg) -->
+
+    <!-- Footer (AS REQUESTED) -->
     <footer class="primary-gradient text-white py-12 mt-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-            
-            <!-- Top Section (Name and Summary) -->
             <div class="space-y-1">
-                <h4 class="text-xl font-extrabold tracking-wide">Chethana SN</h4>
+                <h4 class="text-xl font-extrabold tracking-wide">Hindushree HV</h4>
                 <p class="text-sm font-light opacity-90">Passionate about building efficient and interactive applications.</p>
             </div>
             
-            <!-- Three-Column Link/Contact Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left pt-6 border-t border-white border-opacity-20">
-                
-                <!-- Column 1: QUICK LINKS -->
                 <div class="space-y-2">
                     <h5 class="text-lg font-semibold mb-3">QUICK LINKS</h5>
                     <ul class="space-y-1 text-sm font-light">
                         <li><a href="#about" class="hover:underline">About Me</a></li>
                         <li><a href="#projects" class="hover:underline">Projects</a></li>
                         <li><a href="#contact" class="hover:underline">Contact</a></li>
-                        <!-- Resume Link (UPDATED: Added Raw GitHub URL) -->
-                        <li><a href="https://raw.githubusercontent.com/Chethanasn/portfolio/main/Resume.jpg" target="_blank" class="hover:underline">Resume</a></li>
+                        <li><a href="https://raw.githubusercontent.com/Hindushree56/portfolio/main/Resumae.jpeg" target="_blank" class="hover:underline">Resume</a></li>
                     </ul>
                 </div>
 
-                <!-- Column 2: GET IN TOUCH (Using user's info) -->
                 <div class="space-y-2">
                     <h5 class="text-lg font-semibold mb-3">GET IN TOUCH</h5>
                     <ul class="space-y-1 text-sm font-light">
-                        <li>Email: chethanasn2003@gmail.com</li>
-                        <li>Phone: +91-8660476005</li>
+                        <li>Email: hindushreehv46@gmail.com</li>
+                        <li>Phone: +91-6361702971</li>
                         <li>Location: Bengaluru, India</li>
                     </ul>
                 </div>
                 
-                <!-- Column 3: FOLLOW ME (RESTORING LINKEDIN) -->
                 <div class="space-y-2">
                     <h5 class="text-lg font-semibold mb-3">FOLLOW ME</h5>
                     <div class="flex justify-center md:justify-start space-x-4">
-                         <!-- LinkedIn (Restored) -->
-                        <a href="https://www.linkedin.com/in/chethana-sn/" target="_blank" class="hover:text-gray-200 transition duration-150" aria-label="LinkedIn">
+                        <a href="https://www.linkedin.com/in/hindukh/" target="_blank" class="hover:text-gray-200 transition">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.529-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
                         </a>
-                        <!-- GitHub -->
-                        <a href="https://github.com/Chethanasn" target="_blank" class="hover:text-gray-200 transition duration-150" aria-label="GitHub">
+                        <a href="https://github.com/Hindushree56" target="_blank" class="hover:text-gray-200 transition">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.833 2.807 1.304 3.492.997.107-.775.418-1.304.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.046.138 3.003.404 2.294-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.772.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.792 24 17.291 24 12c0-6.627-5.373-12-12-12z"/></svg>
                         </a>
-                        <!-- Mail Icon (Updated to Gmail Compose URL) -->
-                         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=chethanasn2003@gmail.com" target="_blank" class="hover:text-gray-200 transition duration-150" aria-label="Email (Open in Gmail)">
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hindushreehv46@gmail.com" target="_blank" class="hover:text-gray-200 transition">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12.713l-12-9.713h24l-12 9.713zm0 2.583l-12-9.713v15.426h24v-15.426l-12 9.713z"/></svg>
                         </a>
                     </div>
                 </div>
             </div>
             
-            <!-- Bottom Section (Quote and Copyright) -->
             <div class="pt-6 text-center text-sm">
-                
                 <p class="italic text-xs opacity-80">"Dream big, work hard, stay focused."</p>
                 <p class="text-xs opacity-60 mt-1">&copy; 2025 All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript for Mobile Menu Functionality (and AUTO SCROLL) -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
-            // --- Mobile Menu Toggle Logic ---
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const navLinks = document.querySelectorAll('#mobile-menu a');
+            // Mobile Menu
+            const btn = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            btn.addEventListener('click', () => menu.classList.toggle('hidden'));
 
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            // Close menu when a link is clicked
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
-
-            // --- Horizontal Auto-Scroll Logic for Certificates ---
+            // Auto-Scroll Certificates
             const scrollContainer = document.querySelector('.scroll-container');
             const scrollCards = document.querySelector('.scroll-cards');
             const cardCount = scrollCards.children.length;
-
             let scrollInterval;
             
             const startAutoScroll = () => {
                 if (!scrollContainer || cardCount <= 1) return;
-
-                // Calculate the width of one card plus its gap (300px + 1.5rem gap)
                 const gap = 1.5 * parseFloat(getComputedStyle(scrollContainer).fontSize);
-                const cardWidthWithMargin = 300 + gap; 
-                
+                const cardWidth = 300 + gap; 
                 let scrollPosition = scrollContainer.scrollLeft;
 
                 const autoScroll = () => {
-                    // Check if we are at the end of the scrollable content
                     const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
-                    if (scrollPosition >= maxScroll - 10) { // Added tolerance of 10px
-                        // Reset scroll position
+                    if (scrollPosition >= maxScroll - 10) {
                         scrollPosition = 0;
                     } else {
-                        // Move one card width forward
-                        scrollPosition += cardWidthWithMargin;
-                        // Clamp to maximum scroll position if overshoot is detected
-                        if (scrollPosition > maxScroll) {
-                             scrollPosition = maxScroll;
-                        }
+                        scrollPosition += cardWidth;
+                        if (scrollPosition > maxScroll) scrollPosition = maxScroll;
                     }
-
-                    scrollContainer.scrollTo({
-                        left: scrollPosition,
-                        behavior: 'smooth'
-                    });
+                    scrollContainer.scrollTo({ left: scrollPosition, behavior: 'smooth' });
                 };
 
-                // Clear any existing interval before setting a new one
                 stopAutoScroll(); 
                 scrollInterval = setInterval(autoScroll, 4000);
             };
 
-            const stopAutoScroll = () => {
-                clearInterval(scrollInterval);
-                scrollInterval = null;
-            };
+            const stopAutoScroll = () => clearInterval(scrollInterval);
 
-
-            // Start auto-scroll on load
             startAutoScroll();
-
-            // Pause scrolling when the user hovers over the container (desktop experience)
             scrollContainer.addEventListener('mouseenter', stopAutoScroll);
-
-            // Resume scrolling when the user moves the mouse away (desktop experience)
             scrollContainer.addEventListener('mouseleave', startAutoScroll);
-
         });
     </script>
 </body>
